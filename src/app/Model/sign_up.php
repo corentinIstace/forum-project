@@ -5,5 +5,7 @@
 
         public function compare() {
 
+                // ----- Execute ----- //
+
         }
     }

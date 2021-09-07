@@ -13,9 +13,9 @@
             <input type="file" name="avatar" accept="image/png, image/jpeg">
     <hr width="25%">
         <label for="email">E-mail</label>
-            <input type="email" name="email">
+            <input type="email" name="email" value="">
         <label for="password">Password</label>
-            <input type="password" name="password">
+            <input type="password" name="password" value="">
         <input type="submit" name="submit" value="Connexion.">
     </form>
 </body>
