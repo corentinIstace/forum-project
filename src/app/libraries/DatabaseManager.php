@@ -1,10 +1,10 @@
 <?php
 class DatabaseManager{
   // Get values from config file
-  private $dbHost = DB_Host;
-  private $dbUser = DB_User;
-  private $dbPass = DB_Pass;
-  private $dbName = DB_Name;
+  private $dbHost = DB_HOST;
+  private $dbUser = DB_USER;
+  private $dbPass = DB_PASS;
+  private $dbName = DB_NAME;
 
   protected function connectDb()
   {
