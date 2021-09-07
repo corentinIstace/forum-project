@@ -9,7 +9,7 @@
 <body>
     <h1>Created your acount:</h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="signup_controller.php">
         <label for="avatar">Choose a profile picture:</label>
             <input type="file" name="avatar" accept="image/png, image/jpeg">
     <hr width="25%">
