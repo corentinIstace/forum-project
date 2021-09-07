@@ -1,2 +1,2 @@
 <?php
-echo "Hello world<br><br>public/index";
+require_once "../app/index.php";
