@@ -6,8 +6,8 @@ declare(strict_types=1);
 // Define a board object
 class Board
 {
-  public string $name;
-  public ?string $description;
+  public /*string*/ $name;
+  public /*?string*/ $description;
 
   public function __construct(string $name, ?string $description)
   {
