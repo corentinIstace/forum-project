@@ -15,6 +15,11 @@ class Boards extends DatabaseManager
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function getBoards(){
+    $data = $this->fetchBoards();
+    return $data;
+  }
+
   private function fetchSingleBoard($name){
     $db = $this->connectDb();
 
@@ -23,13 +28,22 @@ class Boards extends DatabaseManager
     return $req->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function getBoards(){
-    $data = $this->fetchBoards();
-    return $data;
-  }
-
   public function getSingleBoard($name){
     $data = $this->fetchSingleBoard($name);
     return $data;
+  }
+
+  private function insertBoard($board){
+    $db = $this->connectDb();
+    $req = $db->prepare("INSERT INTO boards (name, description) VALUES (:name, :description)");
+    $req->execute($board);
+  }
+
+  public function setBoard($board){
+    $board = [
+      'name' => $board->name,
+      'description' => $board->description
+    ];
+    $this->insertBoard($board);
   }
 }
