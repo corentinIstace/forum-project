@@ -20,16 +20,15 @@ class Boards extends DatabaseManager
     return $data;
   }
 
-  private function fetchSingleBoard($name){
+  private function fetchSingleBoard($id){
     $db = $this->connectDb();
-
-    $req = $db->prepare("SELECT * FROM boards WHERE name=:name");
-    $req->execute(["name" => $name]);
-    return $req->fetch(PDO::FETCH_ASSOC);
+      $req = $db->prepare("SELECT * FROM boards WHERE id=:id");
+      $req->execute(["id" => $id]);
+      return $req->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function getSingleBoard($name){
-    $data = $this->fetchSingleBoard($name);
+  public function getSingleBoard($id){
+    $data = $this->fetchSingleBoard($id);
     return $data;
   }
 
@@ -40,10 +39,24 @@ class Boards extends DatabaseManager
   }
 
   public function setBoard($board){
+    // Get only name and description, ignore empty id
     $board = [
-      'name' => $board->name,
-      'description' => $board->description
+      'name' => $board['name'],
+      'description' => $board['description']
     ];
     $this->insertBoard($board);
+  }
+
+  private function updateBoard($board){
+    $db = $this->connectDb();
+    $req = $db->prepare("");
+    $req = $db->prepare("UPDATE boards 
+                        SET name=:name, description=:description
+                        WHERE id=:id");
+    $req->execute($board);
+  }
+
+  public function editBoard($board){
+    $this->updateBoard($board);
   }
 }
