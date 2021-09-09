@@ -17,7 +17,6 @@ require_once 'config/config.php';
 // Get the current page to load
 // If nothing is specified, it will remain empty (home should be loaded)
 $page = $_GET['page'] ?? null;
-
 // Load the controller
 // It will *control* the rest of the work to load the page
 switch ($page) {
@@ -26,6 +25,10 @@ switch ($page) {
     break; 
   case 'addboard';
     (new BoardController())->addBoard();
+    break;
+  case 'editBoard':
+  case 'updateBoard':
+    (new BoardController())->editBoard();
     break;
   case 'home':
   default:
