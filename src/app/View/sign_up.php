@@ -32,6 +32,7 @@
     <?php
     function check(){
         
+        $add_error = array();
                 // ----- sanitize ----- //
         
             $nickName = filter_var($_POST["nickname"], FILTER_SANITIZE_STRING);
@@ -42,35 +43,69 @@
                 // ----- Validate ----- //   
 
             if(false === filter_var($email, FILTER_VALIDATE_EMAIL)) { 
-                echo "Invalid E-mail <br>";
+                $add_error["email"] = "Invalid E-mail <br>";
             }
         
-            if (false === filter_var($password, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,}$/")))){
-                   echo "Please secure your password with min 8 characters, Maj and numbers <br>";
+            if (false === filter_var($password, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])[A-Za-z\d]{8,}$/")))){
+                   $add_error["password"] = "Please secure your password with min 8 characters, Maj and numbers <br>";
             }
 
             if (false === filter_var($nickName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])(?=.)[A-Za-z]{2,}$/")))){
-                   echo "Invalid nickname <br>";
+                   $add_error["nickname"] = "Invalid nickname <br>";
             }
 
             if (false === filter_var($signature, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])(?=.)[A-Za-z]{2,}$/")))){
-                   echo "Invalid signature <br>";
-            }   
-        }
-        check();
+                   $add_error["signature"] = "Invalid signature <br>";
+            }  
             
-            
-            echo "<pre>";
-            print_r($_POST);
-            
-            function store(){
-                
+            if (count($add_error)> 0){
+                echo "There are mistakes, please check your Data!";
+                print_r($add_error);
+                exit;
             }
-            function display(){
+    }
+    check();
+            
+            // echo "<pre>";
+            // print_r($_POST);
+            
+            
+    function store(){
+
+            try{
+                // Instantiate access to the database and return the access object
+                $db = new PDO('mysql:host=mysql;dbname=forum-project;', 'root', 'root');
+                // Throw exceptions when SQL errors are caused
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
-            }
+                $textNickname = $_POST["nickname"];
+                $textEmail = $_POST["email"];
+                $textPassword = $_POST["password"];
+                $textSignature = $_POST["signature"];
+                $textAvatar = "img";
+                $data = [
+                    ':textNickname' => $textNickname,
+                    ':textEmail' => $textEmail,
+                    ':textPassword' => $textPassword,
+                    ':textSignature' => $textSignature,
+                    ':textAvatar' => $textAvatar,
+                ];
+
+                $sql = "INSERT INTO users (nickname, email, password, signature, avatar) 
+                    VALUES (:textNickname, :textEmail, :textPassword, :textSignature, :textAvatar)";
+
+                // insert in database 
+                $req = $db->prepare($sql);
+                $req->execute($data);
+                echo "Your acount is register successfuly";    
+            } 
+            catch(Exception $e){
+                // The connection failed, return the faillure message
+                die('Error : not connected to DB'.$e);
+            }    
+    }
+    store();   
             
-            
-            ?>
+?>
     </body>
 </html>
