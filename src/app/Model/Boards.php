@@ -49,7 +49,6 @@ class Boards extends DatabaseManager
 
   private function updateBoard($board){
     $db = $this->connectDb();
-    $req = $db->prepare("");
     $req = $db->prepare("UPDATE boards 
                         SET name=:name, description=:description
                         WHERE id=:id");
@@ -58,5 +57,11 @@ class Boards extends DatabaseManager
 
   public function editBoard($board){
     $this->updateBoard($board);
+  }
+
+  public function deleteBoard($id){
+    $db = $this->connectDb();
+    $req = $db->prepare("DELETE FROM boards WHERE id=:id");
+    $req->execute(['id'=>$id]);
   }
 }

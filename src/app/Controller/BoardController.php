@@ -108,4 +108,24 @@ class BoardController
       }
     }
   }
+
+  public function deleteBoard()
+  {
+    // Check if incoming id is valid 
+    // then check if the board exist 
+    // then delete it
+    if(isset($_GET['id'])){
+      $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+      $id = filter_var($id, FILTER_VALIDATE_INT);
+      if($id){
+        $model = new Boards();
+        $board = $model->getSingleBoard($id);
+        if($board['id'] == $id) { 
+          $model->deleteBoard($id); 
+          header("Location:index.php?page=categories");
+        }
+        else { /* TODO error */}
+      }
+    }
+  }
 }
