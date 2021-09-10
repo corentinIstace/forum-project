@@ -1,0 +1,45 @@
+.connexions-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5%;
+  padding-top: 10px;
+}
+.register-logo {
+  margin-top: 6.5px;
+}
+.register-logo,
+.log-in-logo {
+  color: white;
+  margin-left: 20px;
+}
+.log-in-logo {
+  margin-right: -2px;
+}
+
+.log-in-button,
+.register-button {
+  color: white;
+  border: none;
+  background-color: transparent;
+}
+.text-white {
+  margin-top: 20px;
+}
+.gradient-custom {
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(253, 58, 45, 0.2),
+    rgba(255, 135, 44, 0.4) 100%
+  );
+
+  background: linear-gradient(
+      45deg,
+      rgba(253, 58, 45, 0.2),
+      rgba(255, 135, 44, 0.4) 100%
+    ),
+    url("https://i2.wp.com/www.alwaysforkeyboard.com/wp-content/uploads/2020/12/lord_of_the_rings_online_1-scaled.jpg?fit=2560%2C1440&ssl=1");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-bottom: 60px;
+}
