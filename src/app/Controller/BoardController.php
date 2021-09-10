@@ -44,6 +44,12 @@ class BoardController
     return true;
   }
 
+  public function getAllBoards()
+  {
+    $model = new Boards;
+    return $model->getBoards();
+  }
+
   public function listBoards()
   {
     // Show list of boards or retrieve a clicked board and repath to edit board
