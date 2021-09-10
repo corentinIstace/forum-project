@@ -58,7 +58,65 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
 
-    <section>
+    <?php
+      // simulate topics      
+      $topics = [
+        [
+          'board' => 1,
+          'title' => 'Topic Type Demo'
+        ],
+        [
+          'board' => 1,
+          'title' => 'Topic Icon Demos'
+        ],
+        [
+          'board' => 1,
+          'title' => 'Unread Forum'
+        ],
+        [
+          'board' => 1,
+          'title' => 'Read Forum'
+        ],
+        [
+          'board' => 1,
+          'title' => 'A forum, With some subforums'
+        ],
+        [
+          'board' => 3,
+          'title' => 'Locked Forum With Unread Topics'
+        ],
+        [
+          'board' => 3,
+          'title' => 'Locked Forum With Read Topic'
+        ],
+        [
+          'board' => 4,
+          'title' => 'This is a linked forum'
+        ],
+        [
+          'board' => 4,
+          'title' => 'Password Protected Forum'
+        ],
+        [
+          'board' => 4,
+          'title' => 'Last Test With a Subforum'
+        ]
+      ];
+
+      foreach($boards as $board): ?>          
+          <section>
+            <h3><?= $board['name'] ?></h3>
+            <i><?= $board['description'] ?></i>
+            <?php foreach($topics as $topic):
+              if($topic['board'] == $board['id']):
+                ?><article><?= $topic['title'] ?></article><?php
+              endif;
+            endforeach; ?>
+          </section>
+        <?php
+      endforeach;
+    ?>
+    <!--<section>
         <h3>Category One</h3>
         <article>Topic Type Demos</article>
         <article>Topic Icon Demos</article>
@@ -77,7 +135,7 @@
         <article>Password Protected Forum</article>
         <article>Last Test With a Subforum</article>
 
-    </section>
+    </section>-->
 
 </body>
 
