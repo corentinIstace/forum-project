@@ -10944,10 +10944,36 @@ table {
 }
 
 .black-footer {
+  color: white;
   height: 25px;
   display: flex;
   justify-content: flex-end;
-  background-color: green;
+  background-color: #424242;
+  font-size: 12px;
+}
+.black-footer a {
+  color: white;
+}
+.black-footer a:hover {
+  color: orange;
+  font-size: 110%;
+}
+.black-footer i {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.black-footer i p {
+  margin-top: -12.5px;
+}
+.black-footer p {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+.fa-fa-envelope::before {
+  margin-right: 100px;
 }
 
 /*# sourceMappingURL=screen.css.map */

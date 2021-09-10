@@ -1,6 +1,3 @@
-footer {
-}
-
 .mb-4 {
   display: flex;
   justify-content: space-between;
@@ -26,8 +23,33 @@ footer {
 }
 
 .black-footer {
+  a {
+    color: white;
+  }
+  a:hover {
+    color: orange;
+    font-size: 110%;
+  }
+  color: white;
   height: 25px;
   display: flex;
   justify-content: flex-end;
-  background-color: green;
+  background-color: rgb(66, 66, 66);
+  font-size: 12px;
+  i {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    p {
+      margin-top: -12.5px;
+    }
+  }
+  p {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+}
+.fa-fa-envelope::before {
+  margin-right: 100px;
 }
