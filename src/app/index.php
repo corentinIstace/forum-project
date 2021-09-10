@@ -30,6 +30,8 @@ switch ($page) {
   case 'updateBoard':
     (new BoardController())->editBoard();
     break;
+  case 'deleteboard':
+    (new BoardController())->deleteBoard();
   case 'home':
   default:
     require_once '../app/Controller/HomepageController.php';
