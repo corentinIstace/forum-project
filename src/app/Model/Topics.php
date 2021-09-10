@@ -6,6 +6,14 @@ require_once '../app/libraries/DatabaseManager.php';
 // Class extending dbManager to define access for the topics table
 class Topics extends DatabaseManager
 {
+  // TODO adapt to get the 3 last recent topics for each boards
+  public function getHomeTopics(){
+    $db = $this->connectDb();
+    $req = $db->prepare("SELECT * FROM topics ORDER BY id DESC");
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   private function fetchTopics($boardId){
     $db = $this->connectDb();
 
