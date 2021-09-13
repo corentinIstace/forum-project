@@ -99,7 +99,7 @@
                 $req = $db->prepare($sql);
                 // lance la requete avec le tableau $data
                 $req->execute($data);
-                require "../View/sign_in.php";
+                // require "../View/sign_in.php";
                 echo "<script>alert('Your acount is register successfuly')</script>";    
   
             } 
