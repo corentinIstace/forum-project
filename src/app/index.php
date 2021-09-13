@@ -21,6 +21,9 @@ $page = $_GET['page'] ?? null;
 // Load the controller
 // It will *control* the rest of the work to load the page
 switch ($page) {
+  case 'topic':
+    (new TopicController())->displayTopic();
+    break;
   case 'categories': // http://127.0.0.1/public/index.php?page=categories
     (new BoardController())->listBoards();
     break;

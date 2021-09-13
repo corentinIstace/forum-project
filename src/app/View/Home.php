@@ -66,7 +66,11 @@
             <i><?= $board['description'] ?></i>
             <?php foreach($topics as $topic):
               if($topic['board_id'] == $board['id']):
-                ?><article><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></article><?php
+                ?>
+                <article>
+                  <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></a>
+                </article>
+                <?php
               endif;
             endforeach; ?>
           </section>
