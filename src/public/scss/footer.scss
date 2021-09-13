@@ -1,0 +1,33 @@
+footer {
+}
+
+.mb-4 {
+  display: flex;
+  justify-content: space-between;
+}
+.white-footer {
+  height: 100px;
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(253, 58, 45, 0.2),
+    rgba(255, 135, 44, 0.4) 100%
+  );
+
+  background: linear-gradient(
+      45deg,
+      rgba(253, 58, 45, 0.2),
+      rgba(255, 135, 44, 0.4) 100%
+    ),
+    url("https://i2.wp.com/www.alwaysforkeyboard.com/wp-content/uploads/2020/12/lord_of_the_rings_online_1-scaled.jpg?fit=2560%2C1440&ssl=1");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-bottom: 60px;
+}
+
+.black-footer {
+  height: 25px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: green;
+}
