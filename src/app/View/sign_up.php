@@ -37,10 +37,14 @@
         
             $nickName = filter_var($_POST["nickname"], FILTER_SANITIZE_STRING);
             $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-            $signature = filter_var($_POST["signature"], FILTER_SANITIZE_SPECIAL_CHARS);
+            // $signature = filter_var($_POST["signature"], FILTER_SANITIZE_SPECIAL_CHARS);
             $password = filter_var($_POST["password"], FILTER_SANITIZE_SPECIAL_CHARS);
         
                 // ----- Validate ----- //   
+                
+            if (false === filter_var($nickName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])(?=.)[A-Za-z]{2,}$/")))){
+                   $add_error["nickname"] = "Invalid nickname <br>";
+            }
 
             if(false === filter_var($email, FILTER_VALIDATE_EMAIL)) { 
                 $add_error["email"] = "Invalid E-mail <br>";
@@ -50,17 +54,15 @@
                    $add_error["password"] = "Please secure your password with min 8 characters, Maj and numbers <br>";
             }
 
-            if (false === filter_var($nickName, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])(?=.)[A-Za-z]{2,}$/")))){
-                   $add_error["nickname"] = "Invalid nickname <br>";
-            }
-
-            if (false === filter_var($signature, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])(?=.)[A-Za-z]{2,}$/")))){
-                   $add_error["signature"] = "Invalid signature <br>";
-            }  
+            // if (false === filter_var($signature, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])(?=.)[A-Za-z]{2,}$/")))){
+            //        $add_error["signature"] = "Invalid signature <br>";
+            // }  
             
             if (count($add_error)> 0){
-                echo "There are mistakes, please check your Data!";
-                print_r($add_error);
+                echo "There are mistakes, please check your Data! <br>";
+                    foreach($add_error as $value){
+                        echo $value;
+                        }
                 exit;
             }
     }
@@ -73,11 +75,6 @@
     function store(){
 
             try{
-                // Instantiate access to the database and return the access object
-                $db = new PDO('mysql:host=mysql;dbname=forum-project;', 'root', 'root');
-                // Throw exceptions when SQL errors are caused
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                
                 $textNickname = $_POST["nickname"];
                 $textEmail = $_POST["email"];
                 $textPassword = $_POST["password"];
@@ -90,18 +87,34 @@
                     ':textSignature' => $textSignature,
                     ':textAvatar' => $textAvatar,
                 ];
-
+                // Instantiate access to the database and return the access object
+                $db = new PDO('mysql:host=mysql;dbname=forum-project;', 'root', 'root');
+                // Throw exceptions when SQL errors are caused
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                
+                
                 $sql = "INSERT INTO users (nickname, email, password, signature, avatar) 
                     VALUES (:textNickname, :textEmail, :textPassword, :textSignature, :textAvatar)";
-
-                // insert in database 
+                // insert in database sans la lancé
                 $req = $db->prepare($sql);
+                // lance la requete avec le tableau $data
                 $req->execute($data);
-                echo "Your acount is register successfuly";    
+                require "../View/sign_in.php";
+                echo "<script>alert('Your acount is register successfuly')</script>";    
+  
             } 
-            catch(Exception $e){
-                // The connection failed, return the faillure message
-                die('Error : not connected to DB'.$e);
+            // check if we have errors
+            catch(PDOException $e){
+                // check if we have duplicate value 
+                if($e -> errorInfo[1] == 1062){
+
+                    echo "This nickname or email is already created";
+                //    The connection failed, return the faillure message
+                   die('Error : not connected <br>'.$e -> getMessage());
+                }
+                else{
+                    echo "Other error happend" . $e -> getMessage();
+                }
             }    
     }
     store();   
