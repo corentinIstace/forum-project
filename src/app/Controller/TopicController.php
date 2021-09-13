@@ -13,10 +13,10 @@ class TopicController
     $this->errors[$value] = $message;
   }
 
-  public function getHomeTopics()
+  public function getHomeTopics($id)
   {
     // When showing the list of the Boards, you need to show the last Topics: the three one with the most recent Message.
     $model = new Topics();
-    return $model->getHomeTopics();
+    return $model->getHomeTopics($id);
   }
 }
