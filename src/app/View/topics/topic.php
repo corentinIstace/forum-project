@@ -10,7 +10,11 @@
 <section>
   <h1><?= $topic['title'] ?></h1>
   <button>
-    <a href="../app/index.php?page=replytopic&id=<?= $topic['id'] ?>">Post Reply&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-reply"></i><a>
+    <?php if(!$topic['isLock']): ?>
+      <a href="../app/index.php?page=replytopic&id=<?= $topic['id'] ?>">Post Reply&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-reply"></i><a>
+    <?php else: ?>
+       Locked by owner
+    <?php endif; ?>
   </button>
   <button><i class="fas fa-wrench"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-down"></i></button>
   <?php foreach ($messages as $message) : ?>
