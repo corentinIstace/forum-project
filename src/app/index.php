@@ -10,6 +10,7 @@ error_reporting(E_ALL);
 //include all your model files here
 //require_once 'Model/Boards.php';
 //include all your controllers here
+require_once '../app/Controller/HomepageController.php';
 require_once '../app/Controller/BoardController.php';
 
 require_once 'config/config.php';
@@ -34,7 +35,7 @@ switch ($page) {
     (new BoardController())->deleteBoard();
   case 'home':
   default:
-    require_once '../app/Controller/HomepageController.php';
+    (new HomepageController())->index();
     //(new HomepageController())->index();
     //echo "Home";
     break;
