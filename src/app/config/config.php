@@ -10,4 +10,4 @@
     define('URLROOT','localhost');
 
     //Sitename
-    define('SITENAME','Forum');
+    define('SITENAME','Le seigneur des forums');
