@@ -68,91 +68,28 @@
     <div class="main-boards">
       <?php
 
-      // simulate topics      
-      $topics = [
-        [
-          'board' => 1,
-          'title' => 'Topic Type Demo'
-        ],
-        [
-          'board' => 1,
-          'title' => 'Topic Icon Demos'
-        ],
-        [
-          'board' => 1,
-          'title' => 'Unread Forum'
-        ],
-        [
-          'board' => 1,
-          'title' => 'Read Forum'
-        ],
-        [
-          'board' => 1,
-          'title' => 'A forum, With some subforums'
-        ],
-        [
-          'board' => 3,
-          'title' => 'Locked Forum With Unread Topics'
-        ],
-        [
-          'board' => 3,
-          'title' => 'Locked Forum With Read Topic'
-        ],
-        [
-          'board' => 4,
-          'title' => 'This is a linked forum'
-        ],
-        [
-          'board' => 4,
-          'title' => 'Password Protected Forum'
-        ],
-        [
-          'board' => 4,
-          'title' => 'Last Test With a Subforum'
-        ]
-      ];
-
-      foreach ($boards as $board) : ?>
-        <section class="homepage-boards">
-          <h3 class="boards-title"><?= $board['name'] ?></h3>
-          <i class="boards-description"><?= $board['description'] ?></i>
-          <?php foreach ($topics as $topic) :
-            if ($topic['board'] == $board['id']) :
-          ?><article><?= $topic['title'] ?></article><?php
-                                                  endif;
-                                                endforeach; ?>
-        </section>
-      <?php
+    <?php
+    /* Loop on boards and topics to display them */
+      foreach($boards as $board): ?>          
+          <section>
+            <h3><?= $board['name'] ?></h3>
+            <i><?= $board['description'] ?></i>
+            <?php foreach($topics as $topic):
+              if($topic['board_id'] == $board['id']):
+                ?><article><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></article><?php
+              endif;
+            endforeach; ?>
+          </section>
+        <?php
       endforeach;
-      ?>
-      <!--<section>
-        <h3>Category One</h3>
-        <article>Topic Type Demos</article>
-        <article>Topic Icon Demos</article>
-        <article>Unread Forum</article>
-        <article>Read Forum</article>
-        <article>A forum, With some subforums</article>
-    </section>
-    <section>
-        <h3>Category Two</h3>
-        <article>Locked Forum With Unread Topics</article>
-        <article>Locked Forum With Read Topics</article>
-    </section>
-    <section>
-        <h3>Category Three</h3>
-        <article>This is a linked forum</article>
-        <article>Password Protected Forum</article>
-        <article>Last Test With a Subforum</article>
+    ?> 
+</body>
 
-    </section>-->
-    </div>
-  </div>
-  <div class="fixed-bottom">
-    <div class="footer">
-      <footer>
-        <section class="white-footer">
-          <!-- Grid container -->
-          <div class="container p-4">
+</body>
+<footer>
+    <section class="white-footer">
+        <!-- Grid container -->
+        <div class="container p-4">
             <!-- Section: Social media -->
             <section class="mb-4">
               <!-- Twitter -->
