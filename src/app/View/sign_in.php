@@ -49,7 +49,7 @@
                echo "tu as reussi";
               
              } else {
-               echo "Invalid username and password!";
+               echo "Invalid username or password or creating acount";
              }
            } catch (PDOException $e) {
              echo "Error : ".$e->getMessage();
