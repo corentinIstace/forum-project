@@ -39,6 +39,13 @@ switch ($page) {
     break;
   case 'deleteboard':
     (new BoardController())->deleteBoard();
+    break;
+    case "sign_in":
+      (new SignUpController())->displaySign_in();
+      break;
+  case 'profile':
+    (new UserController())->displayProfile(); 
+    break;
   case 'home':
   default:
     (new HomepageController())->index();
