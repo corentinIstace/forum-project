@@ -1,5 +1,5 @@
 <?php
-    session_start(); 
+    //session_start(); // session already started
     require_once "../app/config/config.php";
     require_once "../app/libraries/DatabaseManager.php";
     
