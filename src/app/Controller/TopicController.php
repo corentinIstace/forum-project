@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require_once '../app/Model/Topic.php';
@@ -15,7 +16,7 @@ class TopicController
 
   private function isValide()
   {
-    if(count($this->errors) > 0){
+    if (count($this->errors) > 0) {
       // Some errors where detected, whe display them and cancel insertion
       // TODO use a error view instead
       echo "<pre>";
@@ -26,19 +27,23 @@ class TopicController
     return true;
   }
 
-  public function getHomeTopics()
+  public function getHomeTopics($id)
   {
     // When showing the list of the Boards, you need to show the last Topics: the three one with the most recent Message.
     $model = new Topics();
-    return $model->getHomeTopics();
+    return $model->getHomeTopics($id);
   }
 
   public function displayTopic()
   {
     // Check if a valid id is sent then display the topic view
     $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
-    if(!$id) { $this->addError("id", "Invalid"); }
-    if(!$this->isValide()) { return false; }
+    if (!$id) {
+      $this->addError("id", "Invalid");
+    }
+    if (!$this->isValide()) {
+      return false;
+    }
     $model = new Topics();
     $topic = $model->getSingleTopic($id);
     // TODO get messages
@@ -50,8 +55,12 @@ class TopicController
   {
     // Check if a valid id is sent then display the reply form
     $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
-    if(!$id) { $this->addError("id", "Invalid"); }
-    if(!$this->isValide()) { return false; }
+    if (!$id) {
+      $this->addError("id", "Invalid");
+    }
+    if (!$this->isValide()) {
+      return false;
+    }
     $model = new Topics();
     $topic = $model->getSingleTopic($id);
     // TODO get messages
