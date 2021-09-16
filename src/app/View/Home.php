@@ -68,7 +68,6 @@
     <div class="main-boards">
       <?php
 
-    <?php
     /* Loop on boards and topics to display them */
       foreach($boards as $board): ?>          
           <section>
