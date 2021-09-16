@@ -98,7 +98,7 @@ else {
   $data = $_POST['avatar'];
   $deflated = gzdeflate($data, 6);
   $inflated = gzinflate($deflated);
-  echo "Original size : ". strlen($data) . "<br><br>";
+  echo "Original url length : ". strlen($data) . "<br><br>";
   echo "gzcompress<br>";
   for($i = 0 ; $i < 10 ; $i++){
     echo $i . ") " . strlen(gzcompress($data, $i)) . "<br>";
@@ -112,24 +112,25 @@ else {
     echo $i . ") " . strlen(gzencode($data, $i)) . "<br>";
   }
   echo "<br>MySQL Compress : ";
-  echo "<br>Compressed sizes <br>";
+  echo "<br>Compressed url lengths <br>";
   $sqlCompressArray = (new Users())->compress($data);
   echo strlen($sqlCompressArray['U']);
   echo " ";
   echo strlen($sqlCompressArray['C']);
-  echo "<br>Compression with mysql reduce size to ";
+  echo "<br>Compression with mysql reduce url length to ";
   echo (int)(strlen($deflated) / strlen($data) * 100);
-  echo "% of the original size";
+  echo "% of the original url length";
   echo "<br>Is uncompress matching original<br>";
   echo $data == $sqlCompressArray['U'] ? "matching" : "not matching";
   echo "<br>(mySQL compress and gzcompress use both zlib)";
   echo "<br><br>I will take gzdeflate level 6 as my choice";
-  echo "<br>Are original and uncompressed matching ?";
-  echo "<br> sizes : " . strlen($data) . " " . strlen($deflated) . "<br>";
+  echo "<br>Additional testings showed that a 150*150 png file compressed with gzdeflate 6 take ~64KB, just below the ~65KB allowed by text type in DB side.";
+  echo "<br><br>Are original and uncompressed matching ?";
+  echo "<br> url lengths : " . strlen($data) . " " . strlen($deflated) . "<br>";
   echo  $data == $inflated ? "matching" : "not matching";
-  echo "<br>Compression with gzdeflate 6 reduce size to ";
+  echo "<br>Compression with gzdeflate 6 reduce url length to ";
   echo (int)(strlen($deflated) / strlen($data) * 100);
-  echo "% of the original size";
+  echo "% of the original url length";
   echo "<br><br>Testing sanitazing";
   echo "<br>";
   echo $data == sanitizeAvatar($data) ? "<b>Pass sanitazing</b>" : "<b>Don't pass sanitizing</b>";
@@ -148,7 +149,7 @@ else {
     <p>Upload Image</p>
   </div>
   <form class="form" id="imageInput">
-    <input id="imageFile" type="file" onchange="previewFile()" /><br />
+    <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
   </form>
   <form action="" method="post" id="uploaderForm">
     <input type="text" name="avatar" id="avatar" hidden="true" />
