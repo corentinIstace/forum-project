@@ -42,7 +42,7 @@ function previewFile() {
     function () {
       // Display image from its url processed by the file reader
       preview.src = reader.result;
-      base64 = reader.result.split(",")[1];
+      base64 = reader.result; //.split(",")[1]; // Keep image header
 
       // Put url in avatar input for upload
       var avatar = document.querySelector("#avatar");
