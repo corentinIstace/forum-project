@@ -11,13 +11,16 @@
     
     class UserSession extends DatabaseManager{
         
-        public function changeData(){
+        public function logout(){
+            if(isset($_POST['logout'])){
+                session_destroy();
+            }
 
         }
     }
 
     $user = new UserSession();
-    $user -> changeData();
+    $user -> logout();
 
 
 
@@ -77,8 +80,10 @@
                 <li><a href="#name_change">Nickname's change</a> </li>
                 <li><a href="#password_change">Password's change</a> </li>
                 <li><a href="#avatar_change">Avatar's change</a> </li>
-                <li><a href="#activities">Activities</a> </li>
-                <li>Logout</li>
+                <li><a href="#activities">Activities</a></li>
+                <form method="POST" action="profilPage.php">
+                    <input type="submit" name="logout" value="Logout">
+                </form>
             </ul>
         </nav>
         <section id="data">
