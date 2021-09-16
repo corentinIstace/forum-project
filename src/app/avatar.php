@@ -19,8 +19,10 @@ class Users extends DatabaseManager
     $req = $db->prepare("UPDATE users
                         SET avatar=:avatar
                         WHERE id=:id");
-    $req->execute(['id'=>$id, 'avatar'=>$avatar]);
-    return $req->fetchAll(PDO::FETCH_ASSOC);
+    $req->execute([
+      'id' => $id, 
+      'avatar' => $avatar
+    ]);
   }
   // Get user
   public function getUser($id)
@@ -69,12 +71,24 @@ Function getAvatar($id)
     }
     return "";
   }
-  return $user['avatar'];
+  return uncompressAvatar($user['avatar']);
 }
 
-function updateAvatar($id)
+function updateAvatar($id, $avatar)
 {
+  // Check if id is valid then if user exist
+  $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
+  if(!$id){
+    echo "ID invalid";
+    return;
+  }
+  $user = (new Users)->getUser($id);
+  if(!$user){
+    echo "User not found";
+    return;
+  }
 
+  (new Users)->setUserAvatar($id, $avatar);
 }
 
 // Get an avatar url and return it sanitized
@@ -127,8 +141,12 @@ else {
     echo "<br>Avatar invalide. Maximum ".MAX_BYTE_SIZE." bytes";
     return;
   }
-  echo "<br>Validation passed";
-  $avatar = uncompressAvatar($avatar);
+  // Set avatar in DB for user
+  updateAvatar($id, $avatar);
+  echo "<br>Validation passed, db updated";
+  // Get avatar from DB for user
+  $avatar = getAvatar($id);
+  echo "<br><br>Get avatar from db : ";
   echo "<br><img src='".$avatar."' >";
   echo "<br>";
   echo $original == $avatar ? "Matching" : "Not matching";
