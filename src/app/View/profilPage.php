@@ -14,6 +14,7 @@
         public function logout(){
             if(isset($_POST['logout'])){
                 session_destroy();
+                header("Location:../View/home.php");
             }
 
         }
