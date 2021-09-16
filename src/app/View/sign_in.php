@@ -24,11 +24,11 @@
 
             if($count == 1 && !empty($row)) {
               /******************** Your code ***********************/
-              $_SESSION['sess_user_id']   = $row['id'];
-              $_SESSION['sess_user_nickname'] = $row['nickname'];
-              $_SESSION['sess_user_email'] = $row['email'];
-              $_SESSION['sess_user_password'] = $row['password'];
-              $_SESSION['sess_user_signature'] = $row['signature'];
+              $_SESSION['user_id']   = $row['id'];
+              $_SESSION['user_nickname'] = $row['nickname'];
+              $_SESSION['user_email'] = $row['email'];
+              $_SESSION['user_password'] = $row['password'];
+              $_SESSION['user_signature'] = $row['signature'];
 
               header("Location:../app/index.php?page=profile");
               // echo "Bonjour à vous ";
