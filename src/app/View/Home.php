@@ -57,63 +57,93 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
+  <div class="section_footer">
+    <div class="main-sidebar">
+      <section class="main-part-forum">
 
-  <?php
-  /* Loop on boards and topics to display them */
-  foreach ($boards as $board) : ?>
-    <section>
-      <h3><?= $board['name'] ?></h3>
-      <i><?= $board['description'] ?></i>
-      <?php foreach ($topics as $topic) :
-        if ($topic['board_id'] == $board['id']) :
-      ?>
-          <article>
-            <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></a>
-          </article>
-      <?php
-        endif;
-      endforeach; ?>
-    </section>
-  <?php
-  endforeach;
-  ?>
-</body>
+        <?php
+        /* Loop on boards and topics to display them */
+        foreach ($boards as $board) : ?>
 
-</body>
-<footer>
-  <section class="white-footer">
-    <!-- Grid container -->
-    <div class="container p-4">
-      <!-- Section: Social media -->
-      <section class="mb-4">
-        <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating border rounded-circle m-1 " href="#!" role="button"><i class="fab fa-twitter"></i></a>
-        <!-- Apple -->
-        <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-apple"></i></a>
-        <!-- Facebook -->
-        <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-        <!-- Code Pen -->
-        <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"> <i class="fab fa-codepen"></i></a>
-        <!-- Google -->
-        <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
-        <!-- Digg -->
-        <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-digg"></i></a>
-        <!-- Pinterest -->
-        <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-pinterest"></i></a>
+          <h3><?= $board['name'] ?></h3>
+          <i><?= $board['description'] ?></i>
+          <?php foreach ($topics as $topic) :
+            if ($topic['board_id'] == $board['id']) :
+          ?>
+              <article>
+                <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></a>
+              </article>
+          <?php
+            endif;
+          endforeach; ?>
+        <?php
+        endforeach;
+        ?>
       </section>
-  </section>
-  <section class="black-footer">
-    <i class="fas fa-envelope">Contact us</i>
-    <i class="fas fa-shield-alt">The team</i>
-    <i class="fas fa-check">Terms</i>
-    <i class="fas fa-lock">Privacy</i>
-    <i class="fas fa-users">Members</i>
-    <i class="fas fa-trash-alt">Delete cookies</i>
-    <p>All times are UTC</p>
-  </section>
-  <section class="powered-by">
-    <a href="">Powered by Couch Potatoes</a>
-  </section>
-</footer>
+      <section class="sidebar">
+        <div class="input-group">
+          <div class="form-outline">
+            <input type="search" id="form1" class="form-control" placeholder="Search..." />
+          </div>
+          <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <hr />
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </section>
+    </div>
+    <footer>
+      <section class="white-footer">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating border rounded-circle m-1 " href="#!" role="button"><i class="fab fa-twitter"></i></a>
+            <!-- Apple -->
+            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-apple"></i></a>
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+            <!-- Code Pen -->
+            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"> <i class="fab fa-codepen"></i></a>
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+            <!-- Digg -->
+            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-digg"></i></a>
+            <!-- Pinterest -->
+            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-pinterest"></i></a>
+          </section>
+      </section>
+      <section class="black-footer">
+        <i class="fas fa-envelope">Contact us</i>
+        <i class="fas fa-shield-alt">The team</i>
+        <i class="fas fa-check">Terms</i>
+        <i class="fas fa-lock">Privacy</i>
+        <i class="fas fa-users">Members</i>
+        <i class="fas fa-trash-alt">Delete cookies</i>
+        <p>All times are UTC</p>
+      </section>
+      <section class="powered-by">
+        <a href="">Powered by Couch Potatoes</a>
+      </section>
+    </footer>
+  </div>
+</body>
+
 
 </html>

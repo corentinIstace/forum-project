@@ -10932,10 +10932,6 @@ header {
   padding-bottom: 60px;
 }
 
-.footer {
-  z-index: -10 !important;
-}
-
 .mb-4 {
   display: flex;
   justify-content: center;
@@ -11019,18 +11015,18 @@ header {
 }
 
 .main-part-forum {
-  position: absolute;
+  position: relative;
   background-color: #fdb572;
   -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
   margin: 5% 5%;
   z-index: 10;
   width: 90%;
+  height: 60%;
   margin-top: -15px;
   border-radius: 5px;
   padding: 1% 3%;
   font-size: 60%;
-  height: 68%;
 }
 
 .breadcrumb {
@@ -11047,6 +11043,51 @@ header {
   border: 10px solid #fdb572;
   width: 30%;
   background-color: white;
+}
+
+.main-sidebar {
+  display: flex;
+}
+
+#form1 {
+  border: none !important;
+  height: 100% !important;
+}
+
+.input-group {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap !important;
+  border: 1px solid rgba(153, 153, 153, 0.5) !important;
+  margin-top: 10px;
+  border-radius: 10px !important;
+}
+
+.btn-primary {
+  background-color: transparent !important;
+  color: grey !important;
+  border-radius: none !important;
+  border-right: 1px solid rgba(153, 153, 153, 0.5) !important;
+  border-left: 1px solid rgba(153, 153, 153, 0.5) !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.form-control {
+  background-color: none !important;
+  height: 20px !important;
+}
+
+hr {
+  background-color: orange;
+  margin-top: 3px !important;
+}
+
+.mb-3 {
+  display: flex !important;
+  justify-content: space-around !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /*# sourceMappingURL=screen.css.map */
