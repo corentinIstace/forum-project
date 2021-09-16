@@ -3,20 +3,20 @@
     require_once "../app/config/config.php";
     require_once "../app/libraries/DatabaseManager.php";
     
-    if(isset($_SESSION['sess_user_id'])){
-        $id = $_SESSION['sess_user_id'];
+    if(isset($_SESSION['user_id'])){
+        $id = $_SESSION['user_id'];
     };
-    if(isset($_SESSION['sess_user_nickname'])){
-        $nickname = $_SESSION['sess_user_nickname'];
+    if(isset($_SESSION['user_nickname'])){
+        $nickname = $_SESSION['user_nickname'];
     };
-    if(isset($_SESSION['sess_user_email'])){
-        $email = $_SESSION['sess_user_email'];
+    if(isset($_SESSION['user_email'])){
+        $email = $_SESSION['user_email'];
     };
-    if(isset($_SESSION['sess_user_password'])){
-        $password = $_SESSION['sess_user_password'];
+    if(isset($_SESSION['user_password'])){
+        $password = $_SESSION['user_password'];
     };
-    if(isset($_SESSION['sess_user_signature'])){
-        $signature = $_SESSION['sess_user_signature'];
+    if(isset($_SESSION['user_signature'])){
+        $signature = $_SESSION['user_signature'];
     };
    
     class UserSession extends DatabaseManager{
@@ -26,47 +26,52 @@
                 session_destroy();
                 header("Location:../app/index.php?page=home");
             }
+        }
 
+        public function changeNickname(){
+            if(isset($_POST['changeName'])){
+
+                // connect to the bookdb database
+                $db = $this->connectDb();
+                $data = [
+                    ':id' => $_SESSION['sess_user_id'],
+                    ':nickname' => $_POST['new_nickname']
+                ];
+                $sql = 'UPDATE users SET nickname = :nickname WHERE id = :id'; 
+                // prepare statement
+                $statement = $db->prepare($sql);
+                // execute the UPDATE statment
+                if ($statement->execute($data)) {
+                    echo 'The name has been updated successfully!';
+                }   
+            }
+        }
+        public function changePassword(){
+            if(isset($_POST['changePassword'])){
+
+                // connect to the bookdb database
+                $db = $this->connectDb();
+                $data = [
+                    ':id' => $_SESSION['sess_user_id'],
+                    ':password' => $_POST['new_password']
+                ];
+                $sql = 'UPDATE users SET password = :password WHERE id = :id'; 
+                // prepare statement
+                $statement = $db->prepare($sql);
+                // execute the UPDATE statment
+                if ($statement->execute($data)) {
+                    echo 'The password has been updated successfully!';
+                }   
+            }
         }
     }
 
     $user = new UserSession();
     $user -> logout();
-
-
-
-
-
-
-        // if (isset($_POST['submit']))
-        // {
-        //     try {
-        //         $db = new PDO('mysql:host=mysql;dbname=forum-project;', 'root', 'root');
-        //     }
-        //     catch(PDOException $e){
-        //         echo $e -> getMessage();
-        //         exit();
-        //     }
-
-        //     $id = $_POST['id'];
-        //     $nickname = $_POST['nickname'];
-        //     $newNickname = $_POST['new_nickname'];
-
-        //     $query = ("UPDATE users set `nickname`=:nickname, `id`=:id");
-        //     $pdoResult = $db -> prepare($query);
-        //     $pdoResult -> execute( array(":nickname" => $newNickname,
-        //                                                 ":id"=> $id));
-        //     if ($pdoResult){
-        //         echo "<script>alert('data updated')</script>";    
-        //     }
-        //     else {
-        //         echo "error no update";
-        //     }
+    $user -> changeNickname();
+    $user -> changePassword();
                
-        // }
-        
-               
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -109,7 +114,7 @@
                 <input type='text' name='nickname'><br><br>
                 <label for="new_nickname">New nickname</label>
                 <input type='text' name='new_nickname'><br><br>
-                <input type='submit' name='change' value='Change Nickname'>
+                <input type='submit' name='changeName' value='Change Nickname'>
             </form> 
         </section>
         
@@ -120,7 +125,7 @@
                     <input type='text' name='password'><br><br>
                 <label for="new_password">New password</label>
                     <input type='text' name='new_password'><br><br>
-                 <input type='submit' name='change' value='Change password'>
+                 <input type='submit' name='changePassword' value='Change password'>
             </form> 
         </section>
         
