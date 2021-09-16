@@ -1,20 +1,30 @@
 <?php
     session_start(); 
-    require_once "../config/config.php";
-    require_once "../libraries/DatabaseManager.php";
+    require_once "../app/config/config.php";
+    require_once "../app/libraries/DatabaseManager.php";
     
-    $id = $_SESSION['sess_user_id'];
-    $nickname = $_SESSION['sess_user_nickname'];
-    $email = $_SESSION['sess_user_email'];
-    $password = $_SESSION['sess_user_password'];
-    $signature = $_SESSION['sess_user_signature'];
-    
+    if(isset($_SESSION['sess_user_id'])){
+        $id = $_SESSION['sess_user_id'];
+    };
+    if(isset($_SESSION['sess_user_nickname'])){
+        $nickname = $_SESSION['sess_user_nickname'];
+    };
+    if(isset($_SESSION['sess_user_email'])){
+        $email = $_SESSION['sess_user_email'];
+    };
+    if(isset($_SESSION['sess_user_password'])){
+        $password = $_SESSION['sess_user_password'];
+    };
+    if(isset($_SESSION['sess_user_signature'])){
+        $signature = $_SESSION['sess_user_signature'];
+    };
+   
     class UserSession extends DatabaseManager{
         
         public function logout(){
             if(isset($_POST['logout'])){
                 session_destroy();
-                header("Location: /public");
+                header("Location:../app/index.php?page=home");
             }
 
         }
@@ -58,10 +68,6 @@
                
     ?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -77,12 +83,12 @@
         </header>
         <nav>
             <ul>
-                <li><a href="../View/Home.php">Home</a></li>
+                <li><a href="../app/index.php?page=home">Home</a></li>
                 <li><a href="#name_change">Nickname's change</a> </li>
                 <li><a href="#password_change">Password's change</a> </li>
                 <li><a href="#avatar_change">Avatar's change</a> </li>
                 <li><a href="#activities">Activities</a></li>
-                <form method="POST" action="profilPage.php">
+                <form method="POST" action="../app/index.php?page=profile">
                     <input type="submit" name="logout" value="Logout">
                 </form>
             </ul>
@@ -96,7 +102,7 @@
         </section>
         <section id="name_change">
             <h2>Change your Nickname:</h2>
-            <form method="post" action="profilPage.php">
+            <form method="post" action="../app/index.php?page=profile">
                 <label for="id">ID</label>
                 <input type='number' name='id'><br><br>
                 <label for="nickname">Current nickname</label>
@@ -109,7 +115,7 @@
         
         <section id="password_change">
         <h2>Change your password:</h2>
-            <form method="post" action="profilPage.php">
+            <form method="post" action="../app/index.php?page=profile">
                 <label for="password">Current password</label>
                     <input type='text' name='password'><br><br>
                 <label for="new_password">New password</label>

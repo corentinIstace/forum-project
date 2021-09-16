@@ -70,8 +70,8 @@ if(isset($_POST['submit'])) {
                 $connexion = $req->execute($data);
                 // require "../View/sign_in.php";
                 if ($connexion){
-                    header("Location:../View/sign_in.php");
-                    echo "<script>alert('Your acount is register successfuly')</script>";    
+                    header("Location:../index.php?page=sign_in");
+                    // echo "<script>alert('Your acount is register successfuly')</script>";    
                 }
                 
             } 

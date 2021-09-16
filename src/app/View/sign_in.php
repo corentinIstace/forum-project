@@ -1,9 +1,8 @@
 <?php
   session_start();
-  $_SESSION['user_session'] = $userSession;
 
-  require_once "../config/config.php";
-  require_once "../libraries/DatabaseManager.php";
+  require_once "../app/config/config.php";
+  require_once "../app/libraries/DatabaseManager.php";
 
   class SignIn extends DatabaseManager{
 
@@ -31,7 +30,7 @@
               $_SESSION['sess_user_password'] = $row['password'];
               $_SESSION['sess_user_signature'] = $row['signature'];
 
-              header("Location:../View/profilPage.php");
+              header("Location:../app/index.php?page=profile");
               // echo "Bonjour à vous ";
               // print_r($row['nickname']);
               //  require_once "../View/profilPage.php";
