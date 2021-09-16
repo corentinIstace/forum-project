@@ -13,7 +13,7 @@ require_once 'config/config.php';
 class Users extends DatabaseManager
 {
   // Set an avatar to an user
-  function setUserAvatar($id, $avatar)
+  public function setUserAvatar($id, $avatar)
   {
     $db = $this->connectDb();
     $req = $db->prepare("UPDATE users
@@ -23,7 +23,7 @@ class Users extends DatabaseManager
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }
   // Get user
-  function getUser($id)
+  public function getUser($id)
   {
     $db = $this->connectDb();
     $req = $db->prepare("SELECT * FROM users WHERE id=:id");
@@ -31,7 +31,7 @@ class Users extends DatabaseManager
     return $req->fetch(PDO::FETCH_ASSOC);
   }
   // Use the compress sql function if available
-  function compress($data)
+  public function compress($data)
   {
     $db = $this->connectDb();
     $req = $db->prepare("SELECT COMPRESS(:data) AS C, UNCOMPRESS(COMPRESS(:data)) AS U");
@@ -41,6 +41,8 @@ class Users extends DatabaseManager
 }
 
 // Controller
+
+define("MAX_BYTE_SIZE", 65535);
 
 // Search if an avatar exist in db, else gather from gravatar
 Function getAvatar($id)
@@ -75,12 +77,34 @@ function updateAvatar($id)
 
 }
 
-// Get an avatar string and return it sanitized
+// Get an avatar url and return it sanitized
 function sanitizeAvatar($avatar)
 {
   if(!$avatar) { return false; }
   $avatar = filter_var($avatar, FILTER_SANITIZE_STRING);
   return $avatar;
+}
+
+// Get an avatar url and make validation on length
+function validateAvatar($avatar)
+{
+  if(gettype($avatar) != "string") echo "<br>not string";
+  if(strlen($avatar) > MAX_BYTE_SIZE) echo "<br>Failed size validation : " . strlen($avatar) . " " . MAX_BYTE_SIZE;
+  if(!$avatar || $avatar == "") { return false; }
+  if(gettype($avatar) != "string" || strlen($avatar) > MAX_BYTE_SIZE) { return false; }
+  return $avatar;
+}
+
+// Get an uploaded avatar, compress it with gzdeflate
+function compressAvatar($avatar)
+{
+  return gzdeflate($avatar, 6);
+}
+
+// Get an avatar from DB, uncompress it with gzinflate
+function uncompressAvatar($avatar)
+{
+  return gzinflate($avatar);
 }
 
 // "Main"
@@ -94,7 +118,23 @@ if(!isset($_POST['avatar'])){
   $avatarSource = getAvatar($id);
 }
 else {
-  echo "<h3>Testing process around image url compression</h3>";
+
+  echo "Proceed to validation and upload";
+  $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : null;
+  $original = isset($_POST['avatar']) ? $_POST['avatar'] : null;
+  $avatar = validateAvatar(compressAvatar(sanitizeAvatar($avatar)));
+  if(!$avatar) { 
+    echo "<br>Avatar invalide. Maximum ".MAX_BYTE_SIZE." bytes";
+    return;
+  }
+  echo "<br>Validation passed";
+  $avatar = uncompressAvatar($avatar);
+  echo "<br><img src='".$avatar."' >";
+  echo "<br>";
+  echo $original == $avatar ? "Matching" : "Not matching";
+
+  // Testing
+  /* echo "<h3>Testing process around image url compression</h3>";
   $data = $_POST['avatar'];
   $deflated = gzdeflate($data, 6);
   $inflated = gzinflate($deflated);
@@ -133,8 +173,7 @@ else {
   echo "% of the original url length";
   echo "<br><br>Testing sanitazing";
   echo "<br>";
-  echo $data == sanitizeAvatar($data) ? "<b>Pass sanitazing</b>" : "<b>Don't pass sanitizing</b>";
-  echo "<br>";
+  echo $data == sanitizeAvatar($data) ? "<b>Pass sanitazing</b>" : "<b>Don't pass sanitizing</b>"; */
 }
 
 // End of php and begin of html display (view)
