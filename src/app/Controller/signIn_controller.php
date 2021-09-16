@@ -1,9 +1,10 @@
 <?php
-    require_once "../app/Model/sign_up.php";
-    class SignUpController{
+    // require_once "../app/Model/sign_up.php";
+    
+    class SignInController{
 
-        public function validation(){
-
-            
+        public function displayPage(){
+            // Get data from Boards, Topics
+            require "../app/View/sign_in.php";
         }
     }
