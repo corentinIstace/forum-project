@@ -68,7 +68,7 @@
         /* Loop on boards and topics to display them */
         foreach ($boards as $board) : ?>
           <section>
-            <h3><?= $board['name'] ?></h3>
+            <h3><a href="../app/index.php?page=category&id=<?= $board['id'] ?>"><?= $board['name'] ?></a></h3>
             <i><?= $board['description'] ?></i>
             <?php foreach ($topics as $topic) :
               if ($topic['board_id'] == $board['id']) :
