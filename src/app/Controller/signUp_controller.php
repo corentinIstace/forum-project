@@ -8,7 +8,7 @@
             $signUp = new SignUp();
             $signUp -> check();
             $signUp -> store();
-            require "../app/View/sign_up.php";
+            require "../app/View/users/sign_up.php";
         }
     }
    
