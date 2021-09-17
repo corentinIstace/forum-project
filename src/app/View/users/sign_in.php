@@ -1,9 +1,4 @@
-<?php
-  require_once "../app/Model/SignIn.php";
 
-  $signIn = new SignIn();
-  $signIn -> connexion();
-    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
