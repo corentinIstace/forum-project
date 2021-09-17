@@ -12,6 +12,9 @@ error_reporting(E_ALL);
 //include all your controllers here
 require_once '../app/Controller/HomepageController.php';
 require_once '../app/Controller/BoardController.php';
+require_once '../app/Controller/signIn_controller.php';
+require_once '../app/Controller/signUp_controller.php';
+require_once '../app/Controller/UserController.php';
 
 require_once 'config/config.php';
 
@@ -39,6 +42,16 @@ switch ($page) {
     break;
   case 'deleteboard':
     (new BoardController())->deleteBoard();
+    break;
+  case 'sign_up':
+      (new SignUpController())->displayPage();
+      break;
+  case "sign_in":
+      (new SignInController())->displayPage();
+      break;
+  case 'profile':
+    (new UserController())->displayProfile(); 
+    break;
   case 'home':
   default:
     (new HomepageController())->index();

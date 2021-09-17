@@ -1,12 +1,9 @@
-footer {
-}
-
 .mb-4 {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .white-footer {
-  height: 100px;
+  height: 90px;
   background: -webkit-linear-gradient(
     45deg,
     rgba(253, 58, 45, 0.2),
@@ -18,7 +15,7 @@ footer {
       rgba(253, 58, 45, 0.2),
       rgba(255, 135, 44, 0.4) 100%
     ),
-    url("https://i2.wp.com/www.alwaysforkeyboard.com/wp-content/uploads/2020/12/lord_of_the_rings_online_1-scaled.jpg?fit=2560%2C1440&ssl=1");
+    url("https://www.hollywoodreporter.com/wp-content/uploads/2021/08/AmazonStudios_210802A_HD-H-2021.jpg?w=681&h=383&crop=1");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -26,8 +23,64 @@ footer {
 }
 
 .black-footer {
+  color: white;
   height: 25px;
   display: flex;
-  justify-content: flex-end;
-  background-color: green;
+  justify-content: space-between;
+  background-color: rgb(66, 66, 66);
+  font-size: 12px;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: orange;
+    font-size: 110%;
+  }
+
+  i {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    p {
+      margin-top: -12.5px;
+    }
+  }
+  p {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+}
+.fa-fa-envelope::before {
+  margin-right: 100px;
+}
+.powered-by {
+  background-color: rgb(44, 44, 44);
+  font-size: 10px;
+  height: 20px;
+  a {
+    color: white;
+    margin-left: 20px;
+  }
+  a:hover {
+    color: white;
+  }
+  .couchpotatoes {
+    color: orange;
+  }
+}
+#btn-back-to-top {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  color: white;
+  background-color: orange;
+  border: none;
+  box-shadow: none;
+}
+.fas-fa-arrow-up {
+  background-color: orangered;
+}
+.black-footer-ariane {
+  margin-top: -10px;
 }

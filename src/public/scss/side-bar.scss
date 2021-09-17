@@ -1,0 +1,42 @@
+.main-sidebar {
+  display: flex;
+}
+#form1 {
+  border: none !important;
+  height: 100% !important;
+}
+.input-group {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap !important;
+  border: 1px solid rgb(153, 153, 153, 0.5) !important;
+  margin-top: 10px;
+  border-radius: 10px !important;
+}
+.btn-primary {
+  background-color: transparent !important;
+  color: grey !important;
+  border-radius: none !important;
+  border-right: 1px solid rgb(153, 153, 153, 0.5) !important;
+  border-left: 1px solid rgb(153, 153, 153, 0.5) !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+.form-control {
+  background-color: none !important;
+  height: 20px !important;
+}
+hr {
+  background-color: orange;
+  margin-top: 3px !important;
+}
+.mb-3 {
+  display: flex !important;
+  justify-content: space-around !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  #exampleInputPassword1 {
+  }
+  .form-check-input {
+  }
+}

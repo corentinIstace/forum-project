@@ -7,18 +7,17 @@ require_once '../app/libraries/DatabaseManager.php';
 class Topics extends DatabaseManager
 {
   // TODO adapt to get the 3 last recent topics for each boards
-  public function getHomeTopics(){
+  public function getHomeTopics($board_id){
     $db = $this->connectDb();
-    $req = $db->prepare("SELECT * FROM topics ORDER BY id DESC");
-    $req->execute();
+    $req = $db->prepare("SELECT * FROM topics WHERE board_id = :board_id ORDER BY creation_date DESC LIMIT 3");
+    $req->execute(['board_id' => $board_id]);
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }
-
   private function fetchTopics($boardId){
     $db = $this->connectDb();
 
-    $req = $db->prepare("SELECT * FROM topics WHERE boardId = :boardId");
-    $req->execute(['boardId'=>$boardId]);
+    $req = $db->prepare("SELECT * FROM topics WHERE board_id = :boardId");
+    $req->execute(['board_id'=>$boardId]);
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }
 
