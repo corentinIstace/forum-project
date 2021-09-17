@@ -11089,5 +11089,37 @@ hr {
   margin: 0 !important;
   padding: 0 !important;
 }
+h1, .h1 {
+  text-align: center;
+}
+
+#containeur_form {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 70px;
+  background-color: #B36700;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #fcdea8;
+}
+#form label {
+  text-decoration: underline;
+}
+#form input {
+  width: 25%;
+  margin: auto;
+  margin-bottom: 15px;
+}
+#form body {
+  background-color: #cfa14c;
+}
 
 /*# sourceMappingURL=screen.css.map */

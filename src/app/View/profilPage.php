@@ -1,88 +1,3 @@
-<?php
-    session_start(); 
-    require_once "../app/config/config.php";
-    require_once "../app/libraries/DatabaseManager.php";
-    
-    if(isset($_SESSION['user_id'])){
-        $id = $_SESSION['user_id'];
-    };
-    if(isset($_SESSION['user_nickname'])){
-        $nickname = $_SESSION['user_nickname'];
-    };
-    if(isset($_SESSION['user_email'])){
-        $email = $_SESSION['user_email'];
-    };
-    if(isset($_SESSION['user_password'])){
-        $password = $_SESSION['user_password'];
-    };
-    if(isset($_SESSION['user_signature'])){
-        $signature = $_SESSION['user_signature'];
-    };
-   
-    class UserSession extends DatabaseManager{
-        
-        public function logout(){
-            if(isset($_POST['logout'])){
-                session_destroy();
-                header("Location:../app/index.php?page=home");
-            }
-        }
-
-        public function changeNickname(){
-            if(isset($_POST['changeName'])){
-
-                // connect to the bookdb database
-                $db = $this->connectDb();
-                $data = [
-                    ':id' => $_SESSION['user_id'],
-                    ':nickname' => $_POST['new_nickname']
-                ];
-                $sql = 'UPDATE users SET nickname = :nickname WHERE id = :id'; 
-                // prepare statement
-                $statement = $db->prepare($sql);
-                // execute the UPDATE statment
-                if ($statement->execute($data)) {
-                    $sql = 'SELECT nickname = :nickname FROM users WHERE id = :id'; 
-                    $statement = $db->prepare($sql);
-                    $statement->execute($data);
-                    $_SESSION['user_nickname'] = $_POST['new_nickname'];
-                    header("Location:../app/index.php?page=profile");
-                    // echo "Name changed";
-                }   
-            }
-        }
-        public function changePassword(){
-            if(isset($_POST['changePassword'])){
-
-                // connect to the bookdb database
-                $db = $this->connectDb();
-                $data = [
-                    ':id' => $_SESSION['user_id'],
-                    ':password' => $_POST['new_password']
-                ];
-                $sql = 'UPDATE users SET password = :password WHERE id = :id'; 
-                // prepare statement
-                $statement = $db->prepare($sql);
-                // execute the UPDATE statment
-                if ($statement->execute($data)) {
-                    $sql = 'SELECT password = :password FROM users WHERE id = :id'; 
-                    $statement = $db->prepare($sql);
-                    $statement->execute($data);
-                    $_SESSION['user_password'] = $_POST['new_password'];
-                    header("Location:../app/index.php?page=profile");
-                    // echo 'The password has been updated successfully!';
-                }   
-            }
-        }
-    }
-
-    $user = new UserSession();
-    $user -> logout();
-    $user -> changeNickname();
-    $user -> changePassword();
-               
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -93,7 +8,7 @@
     </head>
     <body>
         <header>
-            <h1>Welcome <?= $nickname ?></h1>
+            <h1>Welcome <?= $_SESSION['user_nickname'] ?></h1>
             <img src="" alt="img avatar">
         </header>
         <nav>
@@ -109,11 +24,11 @@
             </ul>
         </nav>
         <section id="data">
-            <h5>Your ID number is : <?= $id ?></h5>
-            <h5>Your nickname is : <?= $nickname ?></h5>
-            <h5>Your e-mail address is : <?= $email ?></h5>
-            <h5>Your password is : <?= $password ?></h5>
-            <h5>Your signature is : <?= $signature ?></h5>
+            <h5>Your ID number is : <?= $_SESSION['user_id'] ?></h5>
+            <h5>Your nickname is : <?= $_SESSION['user_nickname'] ?></h5>
+            <h5>Your e-mail address is : <?= $_SESSION['user_email'] ?></h5>
+            <h5>Your password is : <?= $_SESSION['user_password'] ?></h5>
+            <h5>Your signature is : <?= $_SESSION['user_signature'] ?></h5>
         </section>
         <section id="name_change">
             <h2>Change your Nickname:</h2>
