@@ -38,6 +38,7 @@ class TopicController
   {
     // Check if a valid id is sent then display the topic view
     $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
+    $id = filter_var($id, FILTER_VALIDATE_INT);
     if (!$id) {
       $this->addError("id", "Invalid");
     }

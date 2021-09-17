@@ -21,6 +21,9 @@ class MessageController
         $author_id = isset($_POST['author_id']) ? filter_var(trim($_POST['author_id']), FILTER_SANITIZE_NUMBER_INT) : null;
         $topic_id = isset($_POST['topic_id']) ? filter_var(trim($_POST['topic_id']), FILTER_SANITIZE_NUMBER_INT) : null;
         // Validate
+        $author_id = filter_var($author_id, FILTER_VALIDATE_INT);
+        $topic_id = filter_var($topic_id, FILTER_VALIDATE_INT);
+
         if (!$message_content) {
             $this->addError("message", "Invalid");
         }
@@ -79,6 +82,8 @@ class MessageController
             require '../app/View/boards/ListMessages.php';
         } else {
             $id = filter_has_var(INPUT_POST, 'id') ? filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT) : null;
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            if(!$id) { /* TODO error */}
             header("Location:index.php?page=editBoard&id=$id");
         }
     }
@@ -111,6 +116,7 @@ class MessageController
         if (count($_POST) == 0) {
             $id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) : null;
             $id = filter_var($id, FILTER_VALIDATE_INT);
+            if(!$id) { /* TODO error */}
             $model = new Messages;
             $board = $model->getSingleMessage($id);
             // TODO check if text with spaces can be sent with get
@@ -145,6 +151,7 @@ class MessageController
                 } else { /* TODO error */
                 }
             }
+            if(!$id) { /* TODO error */}
         }
     }
 }
