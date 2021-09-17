@@ -1,13 +1,15 @@
 <?php
-declare(strict_types=1);
 
-// require_once '../app/Model/User.php';
-// require_once '../app/Model/Users.php';
+require_once '../app/Model/User.php';
 
 class UserController
 {
     public function displayProfile()
     {
-      require "../app/View/profilPage.php";
+      $user = new UserSession();
+      $user -> logout();
+      $user -> changeNickname();
+      $user -> changePassword();
+      require "../app/View/users/profilPage.php";
     }
 }

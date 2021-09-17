@@ -1,6 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -13,11 +12,7 @@
   <title>Seigneur Des Anneaux</title>
 </head>
 
-
 <body>
-
-
-
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -35,80 +30,31 @@
 
     <!-- Background image -->
     <div class="mask gradient-custom">
-      <section class="connexions-buttons">
-        <div class="register-button-div"></div>
-        <svg class="register-logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
-          <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-          <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
-        </svg>
-        <button class="register-button"><a href="../app/index.php?page=sign_up">Register</a></button>
-        <div class="log-in-button-div">
-          <svg class="log-in-logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-          </svg></i><button class="log-in-button"><a href="../app/index.php?page=sign_in">Log in</a> </button>
-        </div>
-
-      </section>
-      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="d-flex justify-content-center align-items-center h-100">
         <h1 class="text-white mb-0">The ring's Forum</h1>
       </div>
-    </div>
-    </div>
-    </div>
     </div>
     <!-- Background image -->
 
   </header>
-  <div class="section_footer">
-    <div class="main-sidebar">
-      <section class="main-part-forum">
+  
+  <h1>Created your acount:</h1>
 
-        <?php
-        /* Loop on boards and topics to display them */
-        foreach ($boards as $board) : ?>
-          <section>
-            <h3><?= $board['name'] ?></h3>
-            <i><?= $board['description'] ?></i>
-            <?php foreach ($topics as $topic) :
-              if ($topic['board_id'] == $board['id']) :
-            ?>
-                <article>
-                  <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></a>
-                </article>
-            <?php
-              endif;
-            endforeach; ?>
-          </section>
-        <?php endforeach; ?>
-
-        <section class="sidebar">
-          <div class="input-group">
-            <div class="form-outline">
-              <input type="search" id="form1" class="form-control" placeholder="Search..." />
-            </div>
-            <button type="button" class="btn btn-primary">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-          <hr />
-          <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Username</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Remember me</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-          </form>
-        </section>
-    </div>
+    <section id="containeur_form">
+        <form method="POST" id="form">
+            <label for="avatar">Choose a profile picture:</label>
+                <input type="file" name="avatar" accept="image/png, image/jpeg">
+            <label for="nickname">Nickname:</label>
+                <input type="text" name="nickname" >
+            <label for="email">E-mail:</label>
+                <input type="email" name="email" >
+            <label for="signature">Signature:</label>
+                    <input type="text" name="signature" >
+            <label for="password">Password:</label>
+                <input type="password" name="password" >
+            <input type="submit" name="submit" value="Created acount.">
+        </form>
+    </section>
     <footer>
       <section class="white-footer">
         <!-- Grid container -->
@@ -144,7 +90,5 @@
         <a href="">Powered by Couch Potatoes</a>
       </section>
     </footer>
-  </div>
-</body>
-
+    </body>
 </html>
