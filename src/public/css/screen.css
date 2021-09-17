@@ -11045,6 +11045,10 @@ header {
   background-color: white;
 }
 
+.sidebar {
+  width: 20%;
+}
+
 .main-sidebar {
   display: flex;
 }
@@ -11063,19 +11067,37 @@ header {
   border-radius: 10px !important;
 }
 
-.btn-primary {
-  background-color: transparent !important;
-  color: grey !important;
+.search-button {
   border-radius: none !important;
   border-right: 1px solid rgba(153, 153, 153, 0.5) !important;
   border-left: 1px solid rgba(153, 153, 153, 0.5) !important;
   border-bottom: none !important;
   border-top: none !important;
 }
+.search-button button {
+  background-color: transparent !important;
+  color: grey !important;
+  border: none;
+}
 
 .form-control {
   background-color: none !important;
   height: 20px !important;
+}
+
+label {
+  margin: 0% !important;
+  padding: 0% !important;
+}
+
+.form-label-username {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label-password {
+  display: flex;
+  flex-direction: column;
 }
 
 hr {
@@ -11086,8 +11108,18 @@ hr {
 .mb-3 {
   display: flex !important;
   justify-content: space-around !important;
-  margin: 0 !important;
-  padding: 0 !important;
+}
+
+.button-login {
+  border: none !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+.button-login button {
+  background-color: orange !important;
+  color: white !important;
+  border: none;
+  width: 100%;
 }
 
 /*# sourceMappingURL=screen.css.map */
