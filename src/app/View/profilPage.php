@@ -34,7 +34,7 @@
                 // connect to the bookdb database
                 $db = $this->connectDb();
                 $data = [
-                    ':id' => $_SESSION['sess_user_id'],
+                    ':id' => $_SESSION['user_id'],
                     ':nickname' => $_POST['new_nickname']
                 ];
                 $sql = 'UPDATE users SET nickname = :nickname WHERE id = :id'; 
@@ -46,8 +46,8 @@
                     $statement = $db->prepare($sql);
                     $statement->execute($data);
                     $_SESSION['user_nickname'] = $_POST['new_nickname'];
-
-                    echo "Name changed";
+                    header("Location:../app/index.php?page=profile");
+                    // echo "Name changed";
                 }   
             }
         }
@@ -57,7 +57,7 @@
                 // connect to the bookdb database
                 $db = $this->connectDb();
                 $data = [
-                    ':id' => $_SESSION['sess_user_id'],
+                    ':id' => $_SESSION['user_id'],
                     ':password' => $_POST['new_password']
                 ];
                 $sql = 'UPDATE users SET password = :password WHERE id = :id'; 
@@ -69,7 +69,8 @@
                     $statement = $db->prepare($sql);
                     $statement->execute($data);
                     $_SESSION['user_password'] = $_POST['new_password'];
-                    echo 'The password has been updated successfully!';
+                    header("Location:../app/index.php?page=profile");
+                    // echo 'The password has been updated successfully!';
                 }   
             }
         }
