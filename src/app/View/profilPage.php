@@ -34,7 +34,7 @@
                 // connect to the bookdb database
                 $db = $this->connectDb();
                 $data = [
-                    ':id' => $_SESSION['sess_user_id'],
+                    ':id' => $_SESSION['user_id'],
                     ':nickname' => $_POST['new_nickname']
                 ];
                 $sql = 'UPDATE users SET nickname = :nickname WHERE id = :id'; 
@@ -42,7 +42,12 @@
                 $statement = $db->prepare($sql);
                 // execute the UPDATE statment
                 if ($statement->execute($data)) {
-                    echo 'The name has been updated successfully!';
+                    $sql = 'SELECT nickname = :nickname FROM users WHERE id = :id'; 
+                    $statement = $db->prepare($sql);
+                    $statement->execute($data);
+                    $_SESSION['user_nickname'] = $_POST['new_nickname'];
+                    header("Location:../app/index.php?page=profile");
+                    // echo "Name changed";
                 }   
             }
         }
@@ -52,7 +57,7 @@
                 // connect to the bookdb database
                 $db = $this->connectDb();
                 $data = [
-                    ':id' => $_SESSION['sess_user_id'],
+                    ':id' => $_SESSION['user_id'],
                     ':password' => $_POST['new_password']
                 ];
                 $sql = 'UPDATE users SET password = :password WHERE id = :id'; 
@@ -60,7 +65,12 @@
                 $statement = $db->prepare($sql);
                 // execute the UPDATE statment
                 if ($statement->execute($data)) {
-                    echo 'The password has been updated successfully!';
+                    $sql = 'SELECT password = :password FROM users WHERE id = :id'; 
+                    $statement = $db->prepare($sql);
+                    $statement->execute($data);
+                    $_SESSION['user_password'] = $_POST['new_password'];
+                    header("Location:../app/index.php?page=profile");
+                    // echo 'The password has been updated successfully!';
                 }   
             }
         }
