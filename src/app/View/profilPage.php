@@ -34,7 +34,7 @@
                 // connect to the bookdb database
                 $db = $this->connectDb();
                 $data = [
-                    ':id' => $_SESSION['sess_user_id'],
+                    ':id' => $_SESSION['user_id'],
                     ':nickname' => $_POST['new_nickname']
                 ];
                 $sql = 'UPDATE users SET nickname = :nickname WHERE id = :id'; 
@@ -52,7 +52,7 @@
                 // connect to the bookdb database
                 $db = $this->connectDb();
                 $data = [
-                    ':id' => $_SESSION['sess_user_id'],
+                    ':id' => $_SESSION['user_id'],
                     ':password' => $_POST['new_password']
                 ];
                 $sql = 'UPDATE users SET password = :password WHERE id = :id'; 
