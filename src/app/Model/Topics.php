@@ -16,14 +16,13 @@ class Topics extends DatabaseManager
   private function fetchTopics($boardId){
     $db = $this->connectDb();
 
-    $req = $db->prepare("SELECT * FROM topics WHERE board_id = :boardId");
+    $req = $db->prepare("SELECT * FROM topics WHERE board_id = :board_id ORDER BY id DESC");
     $req->execute(['board_id'=>$boardId]);
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function getTopics($boardId){
-    $data = $this->fetchTopics();
-    return $data;
+    return $this->fetchTopics($boardId);
   }
 
   private function fetchSingleTopic($id){
