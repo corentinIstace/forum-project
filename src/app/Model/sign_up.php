@@ -41,49 +41,61 @@ class SignUp extends DatabaseManager{
                     }
                     exit;
                 }
+            
         }
     }       
         // echo "<pre>";
         // print_r($_POST);
             
     public function store(){
-                
-                try{
-                    $textNickname = $_POST["nickname"];
-                    $textEmail = $_POST["email"];
-                    $textPassword = $_POST["password"];
-                    $textSignature = $_POST["signature"];
-                    $textAvatar = "img";
-                    $data = [
-                        ':textNickname' => $textNickname,
-                        ':textEmail' => $textEmail,
-                        ':textPassword' => $textPassword,
-                        ':textSignature' => $textSignature,
-                        ':textAvatar' => $textAvatar,
-                    ];
+        if((isset($_POST['submit']))){
 
+            if(isset($_POST["nickname"])){
+                $nickname = $_POST["nickname"];
+            };
+            if(isset($_POST['email'])){
+                $email = $_POST['email'];
+            };
+            if(isset($_POST["password"])){
+                $password = $_POST["password"];
+            };
+            if(isset($_POST["signature"])){
+                $signature = $_POST["signature"];
+            };
+            $avatar = "img";
+
+                try{
+                    
+                    $data = [
+                        ':nickname' => $nickname,
+                        ':email' => $email,
+                        ':password' => $password,
+                        ':signature' => $signature,
+                        ':avatar' => $avatar,
+                    ];
+                    
                     // Instantiate access to the database and return the access object
                     $db = $this->connectDb();
                     // Throw exceptions when SQL errors are caused                    
                     
                     $sql = "INSERT INTO users (nickname, email, password, signature, avatar) 
-                    VALUES (:textNickname, :textEmail, :textPassword, :textSignature, :textAvatar)";
-                // insert in database sans la lancé
-                $req = $db->prepare($sql);
-                // lance la requete avec le tableau $data
-                $connexion = $req->execute($data);
-                // require "../View/sign_in.php";
-                if ($connexion){
-                    header("Location:../index.php?page=sign_in");
-                    // echo "<script>alert('Your acount is register successfuly')</script>";    
-                }
-                
-            } 
-            // check if we have errors
-            catch(PDOException $e){
-                // check if we have duplicate value 
-                if($e -> errorInfo[1] == 1062){
+                        VALUES (:nickname, :email, :password, :signature, :avatar)";
+                    // insert in database sans la lancé
+                    $req = $db->prepare($sql);
+                    // lance la requete avec le tableau $data
+                    $connexion = $req->execute($data);
+                    // require "../View/sign_in.php";
+                    if ($connexion){
+                        header("Location:../app/index.php?page=sign_in");
+                        // echo "<script>alert('Your acount is register successfuly')</script>";    
+                    }
                     
+            } 
+                // check if we have errors
+            catch(PDOException $e){
+                    // check if we have duplicate value 
+                if($e -> errorInfo[1] == 1062){
+                        
                     //    The connection failed, return the faillure message
                     die('Error This nickname or email is already created : <br>'.$e -> getMessage());
                 }
@@ -91,5 +103,6 @@ class SignUp extends DatabaseManager{
                     echo "Other error happend" . $e -> getMessage();
                 }
             }    
+        }
     }   
 };
