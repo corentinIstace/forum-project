@@ -42,7 +42,12 @@
                 $statement = $db->prepare($sql);
                 // execute the UPDATE statment
                 if ($statement->execute($data)) {
-                    echo 'The name has been updated successfully!';
+                    $sql = 'SELECT nickname = :nickname FROM users WHERE id = :id'; 
+                    $statement = $db->prepare($sql);
+                    $statement->execute($data);
+                    $_SESSION['user_nickname'] = $_POST['new_nickname'];
+
+                    echo "Name changed";
                 }   
             }
         }
@@ -60,6 +65,10 @@
                 $statement = $db->prepare($sql);
                 // execute the UPDATE statment
                 if ($statement->execute($data)) {
+                    $sql = 'SELECT password = :password FROM users WHERE id = :id'; 
+                    $statement = $db->prepare($sql);
+                    $statement->execute($data);
+                    $_SESSION['user_password'] = $_POST['new_password'];
                     echo 'The password has been updated successfully!';
                 }   
             }
