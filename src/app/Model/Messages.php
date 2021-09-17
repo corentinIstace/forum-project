@@ -39,19 +39,18 @@ class Messages extends DatabaseManager
   private function insertMessage($message)
   {
     $db = $this->connectDb();
-    $req = $db->prepare("INSERT INTO messages (title, creation_date, author_id, message_content) 
-                            VALUES (:title, :creation_date, :author_id, :board_id),: message_content");
+    $req = $db->prepare("INSERT INTO messages (author_id, topic_id, creation_date, message_content) 
+                            VALUES (:author_id, :topic_id, now(), :message_content");
     $req->execute($message);
   }
 
-  public function setmessage($messages)
+  public function setMessage($message)
   {
-    $messages = [
-      'title' => $messages['title'],
-      'creation_date' => $messages['creation_date'],
-      'author_id' => $messages['author_id'],
-      'message_id' => $messages['message_id'],
-      'message_content' => $messages['message_content']
+    $message = [
+      'author_id' => $message['author_id'],
+      'topic_id' => $message['topic_id'],
+      'creation_date' => $message['creation_date'],
+      'message_content' => $message['message_content']
     ];
     $this->insertMessage($messages);
   }
@@ -88,21 +87,6 @@ class Messages extends DatabaseManager
 
 
 
-// If the user clicked submit on comment form...
-if (isset($_POST['comment_posted'])) {
-    global $db;
-    // grab the comment that was submitted through Ajax call
-    $comment_text = $_POST['comment_text'];
-    // insert comment into database
-    $sql = "INSERT INTO comments (post_id, user_id, body, created_at, updated_at) VALUES (1, " . $user_id . ", '$comment_text', now(), null)";
-    $result = mysqli_query($db, $sql);
-    // Query same comment from database to send back to be displayed
-    $inserted_id = $db->insert_id;
-    $res = mysqli_query($db, "SELECT * FROM comments WHERE id=$inserted_id");
-    $inserted_comment = mysqli_fetch_assoc($res);
-    // if insert was successful, get that same comment from the database and return it
-   
-}
 // If the user clicked submit on reply form...
 if (isset($_POST['reply_posted'])) {
     global $db;

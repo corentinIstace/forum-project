@@ -17,29 +17,29 @@ class MessageController
     private function getValidateMessage($new)
     {
         // Sanitize
-        $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
-        $name = filter_has_var(INPUT_POST, 'name') ? filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING) : null;
-        $description = filter_has_var(INPUT_POST, 'description') ? filter_var(trim($_POST['description']), FILTER_SANITIZE_STRING) : null;
-        $message_content = filter_has_var(INPUT_POST, 'message') ? filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING) : null;
+        $message_content = isset($_POST['comment_posted']) ? filter_var(trim($_POST['comment_posted']), FILTER_SANITIZE_STRING) : null;
+        $author_id = isset($_POST['author_id']) ? filter_var(trim($_POST['author_id']), FILTER_SANITIZE_NUMBER_INT) : null;
+        $topic_id = isset($_POST['topic_id']) ? filter_var(trim($_POST['topic_id']), FILTER_SANITIZE_NUMBER_INT) : null;
         // Validate
-        if (!$name) {
-            $this->addError("name", "Invalid");
-        }
-        if (!$new && !$id) {
-            $this->addError("id", "Invalid");
-        }
-        if (!$message_content && !$id) {
+        if (!$message_content) {
             $this->addError("message", "Invalid");
         }
+        if (!$author_id) {
+          $this->addError("Author", "Invalid");
+        }
+        if (!$topic_id) {
+          $this->addError("Topic", "Invalid");
+        }
+        /* if (!$new && !$id) {
+            $this->addError("id", "Invalid");
+        }*/
         if (count($this->errors) > 0) {
             return false;
         }
 
-        // if(!$description) { $this->addError("description", "Invalid"); } // description is optionnal
         return [
-            'id' => $id,
-            'name' => $name,
-            'description' => $description,
+            'author_id' => $author_id,
+            'topic_id' => $topic_id
             'message' => $message_content,
         ];
     }
@@ -85,20 +85,23 @@ class MessageController
 
     public function addMessage()
     {
-        // Send the form view then handle form data for insertion of a board
+        // Send the form view then handle form data for insertion of a message
         if (count($_POST) == 0) {
             // Display form
             require '../app/View/boards/newBoard.php';
         } else {
             // Retrieve data from the form, proceed validation and insertion
-            $board = $this->getValidateMessage(TRUE);
+            $message = $this->getValidateMessage(TRUE);
             if ($this->isValide()) {
-                // Nothing wrong, will proceed the insertion then display the list of boards
+                // Nothing wrong, will proceed the insertion
                 $model = new Message;
                 $model->setMessage($message);
-                header("Location:index.php?page=categories");
+                // if insert was successful, return to the topic view
+                //$model->getLastMessageFrom($id); // TODO SESSION['id']
+                header("Location:index.php?page=topic&id=".$message['topic_id']);
             }
-        }
+        } 
+}
     }
 
     public function editMessage()
