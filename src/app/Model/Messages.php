@@ -64,6 +64,7 @@ class Messages extends DatabaseManager
     // return the username
     //return mysqli_fetch_assoc($result)['username'];
   }
+
   // Receives a comment id and returns the username
   public function getRepliesByCommentId($id)
   {
@@ -73,6 +74,7 @@ class Messages extends DatabaseManager
     //$replies = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }
+
   // Receives a post id and returns the total number of comments on that post
   public function getCommentsCountByPostId($post_id)
   {
@@ -88,7 +90,7 @@ class Messages extends DatabaseManager
 
 
 // If the user clicked submit on reply form...
-if (isset($_POST['reply_posted'])) {
+/* if (isset($_POST['reply_posted'])) {
     global $db;
     // grab the reply that was submitted through Ajax call
     $reply_text = $_POST['reply_text'];
@@ -116,10 +118,10 @@ if (isset($_POST['reply_posted'])) {
         echo "error";
         exit();
     }
-}
+} */
 
 ?>
-
+<?php /* TODO use style in View/topics
 <!DOCTYPE html>
 <html lang="en">
 
@@ -191,3 +193,5 @@ if (isset($_POST['reply_posted'])) {
 
 
 </html>
+
+*/
