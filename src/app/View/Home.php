@@ -100,7 +100,7 @@
           </div>
           <div class="mb-3">
             <div class="form-label-password">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <label for="exampleInputPassword1" class="form-label"> Password</label>
               <input type="password" class="form-control" id="exampleInputPassword1">
             </div>
           </div>

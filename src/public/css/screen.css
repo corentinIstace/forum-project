@@ -11046,7 +11046,7 @@ header {
 }
 
 .sidebar {
-  width: 20%;
+  width: 25%;
 }
 
 .main-sidebar {
@@ -11083,6 +11083,12 @@ header {
 .form-control {
   background-color: none !important;
   height: 20px !important;
+  font-size: 0.8rem !important;
+  font-weight: 100 !important;
+}
+
+.p-sign-text {
+  font-size: 0.8rem !important;
 }
 
 label {
@@ -11105,11 +11111,6 @@ hr {
   margin-top: 3px !important;
 }
 
-.mb-3 {
-  display: flex !important;
-  justify-content: space-around !important;
-}
-
 .button-login {
   border: none !important;
   display: flex !important;
@@ -11120,6 +11121,9 @@ hr {
   color: white !important;
   border: none;
   width: 100%;
+  height: 20px !important;
+  border-radius: 10px !important;
+  padding: 0 !important;
 }
 
 /*# sourceMappingURL=screen.css.map */
