@@ -5,58 +5,135 @@ declare(strict_types=1);
 require_once '../libraries/DatabaseManager.php';
 
 class Messages extends DatabaseManager
-
 {
-    public function getMessages()
-    {
-        $db = $this->connectDb();
-        $req = $db->prepare("SELECT * FROM messages ORDER BY id DESC");
-        $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    }
+  public function getMessages()
+  {
+    $db = $this->connectDb();
+    $req = $db->prepare("SELECT * FROM messages ORDER BY id DESC");
+    $req->execute();
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+  }
 
-    private function fetchMessages($MessagesId)
-    {
-        $db = $this->connectDb();
-        $req = $db->prepare("SELECT * FROM messages WHERE MessagesId = :MessagesId");
-        $req->execute(['messagesId' => $MessagesId]);
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    }
+  private function fetchMessages($MessagesId)
+  {
+    $db = $this->connectDb();
+    $req = $db->prepare("SELECT * FROM messages WHERE MessagesId = :MessagesId");
+    $req->execute(['messagesId' => $MessagesId]);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+  }
 
-    public function getMessage($MessagesId)
-    {
-        $data = $this->fetchMessages($MessagesId);
-        return $data;
-    }
+  public function getMessage($MessagesId)
+  {
+    $data = $this->fetchMessages($MessagesId);
+    return $data;
+  }
 
-    private function fetchSingleMessage($id)
-    {
-        $db = $this->connectDb();
-        $req = $db->prepare("SELECT * FROM messages WHERE id=:id");
-        $req->execute(["id" => $id]);
-        return $req->fetch(PDO::FETCH_ASSOC);
-    }
+  private function fetchSingleMessage($id)
+  {
+    $db = $this->connectDb();
+    $req = $db->prepare("SELECT * FROM messages WHERE id=:id");
+    $req->execute(["id" => $id]);
+    return $req->fetch(PDO::FETCH_ASSOC);
+  }
 
-    private function insertMessage($message)
-    {
-        $db = $this->connectDb();
-        $req = $db->prepare("INSERT INTO messages (title, creation_date, author_id, message_content) 
-                                VALUES (:title, :creation_date, :author_id, :board_id),: message_content");
-        $req->execute($message);
-    }
+  private function insertMessage($message)
+  {
+    $db = $this->connectDb();
+    $req = $db->prepare("INSERT INTO messages (title, creation_date, author_id, message_content) 
+                            VALUES (:title, :creation_date, :author_id, :board_id),: message_content");
+    $req->execute($message);
+  }
 
-    public function setmessage($messages)
-    {
-        $messages = [
-            'title' => $messages['title'],
-            'creation_date' => $messages['creation_date'],
-            'author_id' => $messages['author_id'],
-            'message_id' => $messages['message_id'],
-            'message_content' => $messages['message_content']
-        ];
-        $this->insertMessage($messages);
+  public function setmessage($messages)
+  {
+    $messages = [
+      'title' => $messages['title'],
+      'creation_date' => $messages['creation_date'],
+      'author_id' => $messages['author_id'],
+      'message_id' => $messages['message_id'],
+      'message_content' => $messages['message_content']
+    ];
+    $this->insertMessage($messages);
+  }
+
+  // Receives a user id and returns the username
+  public function getUsernameById($id)
+  {
+    $db = $this->connectDb();
+    $req = $db->prepare("SELECT username FROM users WHERE id=" . $id . " LIMIT 1");
+    //$result = mysqli_query($db, "SELECT username FROM users WHERE id=" . $id . " LIMIT 1");
+    // return the username
+    //return mysqli_fetch_assoc($result)['username'];
+  }
+  // Receives a comment id and returns the username
+  public function getRepliesByCommentId($id)
+  {
+    $db = $this->connectDb();
+    $req = $db->prepare("SELECT * FROM replies WHERE comment_id=$id");
+    //$result = mysqli_query($db, "SELECT * FROM replies WHERE comment_id=$id");
+    //$replies = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+  }
+  // Receives a post id and returns the total number of comments on that post
+  public function getCommentsCountByPostId($post_id)
+  {
+    $db = $this->connectDb();
+    $req = $db->prepare("SELECT COUNT(*) AS total FROM comments");
+    //$result = mysqli_query($db, "SELECT COUNT(*) AS total FROM comments");
+    //$data = mysqli_fetch_assoc($result);
+    //return $data['total'];
+    return $req->fetch(PDO::FETCH_ASSOC);
+  }
+}
+
+
+
+// If the user clicked submit on comment form...
+if (isset($_POST['comment_posted'])) {
+    global $db;
+    // grab the comment that was submitted through Ajax call
+    $comment_text = $_POST['comment_text'];
+    // insert comment into database
+    $sql = "INSERT INTO comments (post_id, user_id, body, created_at, updated_at) VALUES (1, " . $user_id . ", '$comment_text', now(), null)";
+    $result = mysqli_query($db, $sql);
+    // Query same comment from database to send back to be displayed
+    $inserted_id = $db->insert_id;
+    $res = mysqli_query($db, "SELECT * FROM comments WHERE id=$inserted_id");
+    $inserted_comment = mysqli_fetch_assoc($res);
+    // if insert was successful, get that same comment from the database and return it
+   
+}
+// If the user clicked submit on reply form...
+if (isset($_POST['reply_posted'])) {
+    global $db;
+    // grab the reply that was submitted through Ajax call
+    $reply_text = $_POST['reply_text'];
+    $comment_id = $_POST['comment_id'];
+    // insert reply into database
+    $sql = "INSERT INTO replies (user_id, comment_id, body, created_at, updated_at) VALUES (" . $user_id . ", $comment_id, '$reply_text', now(), null)";
+    $result = mysqli_query($db, $sql);
+    $inserted_id = $db->insert_id;
+    $res = mysqli_query($db, "SELECT * FROM replies WHERE id=$inserted_id");
+    $inserted_reply = mysqli_fetch_assoc($res);
+    // if insert was successful, get that same reply from the database and return it
+    if ($result) {
+        $reply = "<div class='comment reply clearfix'>
+                <img src='profile.png' alt='' class='profile_pic'>
+                <div class='comment-details'>
+                    <span class='comment-name'>" . getUsernameById($inserted_reply['user_id']) . "</span>
+                    <span class='comment-date'>" . date('F j, Y ', strtotime($inserted_reply['created_at'])) . "</span>
+                    <p>" . $inserted_reply['body'] . "</p>
+                    <a class='reply-btn' href='#'>reply</a>
+                </div>
+            </div>";
+        echo $reply;
+        exit();
+    } else {
+        echo "error";
+        exit();
     }
 }
+
 ?>
 
 <!DOCTYPE html>
