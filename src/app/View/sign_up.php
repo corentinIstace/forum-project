@@ -7,7 +7,7 @@ if(isset($_POST['submit'])) {
         
         $nickName = filter_var($_POST["nickname"], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-        // $signature = filter_var($_POST["signature"], FILTER_SANITIZE_SPECIAL_CHARS);
+        $signature = filter_var($_POST["signature"], FILTER_SANITIZE_SPECIAL_CHARS);
         $password = filter_var($_POST["password"], FILTER_SANITIZE_SPECIAL_CHARS);
         
         // ----- Validate ----- //   
