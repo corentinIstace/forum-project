@@ -19,9 +19,9 @@
   <button><i class="fas fa-wrench"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-down"></i></button>
   <?php foreach ($messages as $message) : /* Loop to display messages */?>
     <section>
-        <h3><?= $message->creation_date ?></h3><br>
-        <p><?= $message->description ?></p><br>
-        <?php if(isset($_SESSION) && $message->author_id == $_SESSION['id']): ?>
+        <h3><?= $message['creation_date'] ?></h3><br>
+        <p><?= $message['content'] ?></p><br>
+        <?php if(isset($_SESSION) && $message['author_id'] == $_SESSION['id']): ?>
           <button type="submit">Edit message</button><br>
         <?php endif; ?>
     </section>

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-require_once '../libraries/DatabaseManager.php';
+require_once '../app/libraries/DatabaseManager.php';
 
 class Messages extends DatabaseManager
 {
-  public function getMessages()
+  public function getMessages($topicId)
   {
     $db = $this->connectDb();
-    $req = $db->prepare("SELECT * FROM messages ORDER BY id DESC");
-    $req->execute();
+    $req = $db->prepare("SELECT * FROM messages WHERE topic_id = :topic_id ORDER BY id ASC");
+    $req->execute(['topic_id' => $topicId]);
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }
 

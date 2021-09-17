@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once '../app/Model/Topic.php';
 require_once '../app/Model/Topics.php';
+require_once '../app/Model/Messages.php';
 
 class TopicController
 {
@@ -45,10 +46,11 @@ class TopicController
     if (!$this->isValide()) {
       return false;
     }
+    // Get the topic and its messages then display the view
     $model = new Topics();
     $topic = $model->getSingleTopic($id);
-    // TODO get messages
-    $messages = [];
+    $model = new Messages();
+    $messages = $model->getMessages($id);
     require '../app/View/topics/topic.php';
   }
 

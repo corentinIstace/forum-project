@@ -60,34 +60,6 @@ class MessageController
         return true;
     }
 
-    public function getAllMessages()
-    {
-        $model = new Messages;
-        return $model->getMessages();
-    }
-
-    public function listMessages()
-    {
-        // Show list of boards or retrieve a clicked board and repath to edit board
-        if (!filter_has_var(INPUT_POST, 'id')) {
-            // Listing of boards
-            // Instantiate boards model (db access) and retrieve data
-            $model = new Messages;
-            $boards = $model->getMessages();
-            // Loop converting array elements into board from the class
-            foreach ($messages as $key => $message) {
-                $messages[$key] = new Message((int)$message['id'], $message['name'], $message['description'], $message['message']);
-            }
-            // Load the view
-            require '../app/View/boards/ListMessages.php';
-        } else {
-            $id = filter_has_var(INPUT_POST, 'id') ? filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT) : null;
-            $id = filter_var($id, FILTER_VALIDATE_INT);
-            if(!$id) { /* TODO error */}
-            header("Location:index.php?page=editBoard&id=$id");
-        }
-    }
-
     public function addMessage()
     {
         // Send the form view then handle form data for insertion of a message
