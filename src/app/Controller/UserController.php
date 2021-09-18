@@ -8,8 +8,6 @@ class UserController
     {
       $user = new UserSession();
       $user -> logout();
-      $user -> changeNickname();
-      $user -> changePassword();
       require "../app/View/users/profilPage.php";
     }
 }
