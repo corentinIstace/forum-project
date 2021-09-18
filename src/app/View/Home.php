@@ -60,25 +60,59 @@
   <div class="section_footer">
     <div class="main-sidebar">
       <section class="main-part-forum">
+        <div class="row">
 
-        <?php
-        /* Loop on boards and topics to display them */
-        foreach ($boards as $board) : ?>
 
-          <h3><?= $board['name'] ?></h3>
-          <i><?= $board['description'] ?></i>
-          <?php foreach ($topics as $topic) :
-            if ($topic['board_id'] == $board['id']) :
-          ?>
-              <article>
-                <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></a>
-              </article>
           <?php
-            endif;
-          endforeach; ?>
-        <?php
-        endforeach;
-        ?>
+          /* Loop on boards and topics to display them */
+
+          foreach ($boards as $board) : ?>
+
+            <div class="board-container">
+
+              <h3><?= $board['name'] ?></h3>
+              <i class="testDescription"><?= $board['description'] ?></i>
+              <hr class="board-hr">
+              <div class="bottom-boards align-self-sm-end">
+                <div class="topics">
+                  <strong>
+                    <p class="board-stats-topic">459</p>
+                  </strong>
+                  <p class="board-name-stats-topics">Topics</p>
+                </div>
+                <div class="posts">
+                  <strong>
+                    <p class="board-stats-posts">908</p>
+                  </strong>
+                  <p class="board-name-stats-posts">Posts</p>
+                </div>
+                <div class="last-post">
+                  <strong>
+                    <p class="board-stats-lastPost">Sun Feb 03</p>
+                  </strong>
+                  <p class="board-name-stats-lastPost">Last Post</p>
+                </div>
+              </div>
+
+
+
+
+              <?php foreach ($topics as $topic) :
+                if ($topic['board_id'] == $board['id']) :
+              ?>
+                  <div class="article-dn">
+                    <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></a>
+                  </div>
+
+              <?php
+                endif;
+              endforeach; ?>
+            </div>
+          <?php
+          endforeach;
+          ?>
+        </div>
+
       </section>
       <section class="sidebar">
         <div class="input-group">
@@ -151,6 +185,5 @@
     </footer>
   </div>
 </body>
-
 
 </html>

@@ -11015,14 +11015,13 @@ header {
 }
 
 .main-part-forum {
-  position: relative;
-  background-color: #fdb572;
-  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-  margin: 5% 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #fcdea8;
+  margin: 5% 1%;
   z-index: 10;
   width: 90%;
-  height: 60%;
   margin-top: -15px;
   border-radius: 5px;
   padding: 1% 3%;
@@ -11032,6 +11031,65 @@ header {
 .breadcrumb {
   background-color: transparent !important;
   width: 300px;
+}
+
+.board-container {
+  background-color: white !important;
+  height: 145px;
+  width: 30%;
+  font-size: 80%;
+  border-radius: 10px !important;
+  padding: 3px !important;
+  margin: 6px !important;
+}
+
+h3, .h3 {
+  font-size: 200% !important;
+}
+
+.article-dn {
+  display: none !important;
+}
+
+.board-hr {
+  width: 20%;
+  margin-top: 10px !important;
+}
+
+.topics {
+  display: flex;
+  flex-flow: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.topics p {
+  margin: 0 !important;
+}
+
+.posts {
+  display: flex;
+  flex-flow: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.posts p {
+  margin: 0 !important;
+}
+
+.last-post {
+  display: flex;
+  flex-flow: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.last-post p {
+  margin: 0 !important;
+}
+
+.bottom-boards {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-self: flex-end !important;
 }
 
 .main-boards {
@@ -11124,6 +11182,112 @@ hr {
   height: 20px !important;
   border-radius: 10px !important;
   padding: 0 !important;
+}
+
+.mb-3 .my-3 {
+  margin-bottom: 0 !important;
+}
+
+.sub-container-2-nav-1 p {
+  font-size: 70%;
+  margin-bottom: 1px !important;
+}
+
+.lastposts p {
+  font-size: 70%;
+  margin-bottom: 1px !important;
+  border-bottom: 1px solid grey;
+}
+
+.sub-container-2-nav-1 p {
+  font-size: 70%;
+  margin-bottom: 1px !important;
+  border-bottom: 1px solid grey;
+}
+
+.sub-container-3 h4, .sub-container-3 .h4 {
+  font-size: 90%;
+}
+
+.main-part-forum-topic {
+  background-color: #fcdea8;
+  margin: 5% 1%;
+  z-index: 10;
+  width: 90%;
+  margin-top: -15px;
+  border-radius: 5px;
+  padding: 1% 3%;
+  font-size: 60%;
+}
+
+.new-topic button {
+  color: white !important;
+  border: none !important;
+  background-color: orange !important;
+  border-radius: 10px !important;
+  padding: 2px 10px !important;
+  margin-top: 10px;
+}
+
+.sub-container-1-head,
+.sub-container-2-head {
+  background-color: #ff4e00;
+  background-image: linear-gradient(315deg, #ff4e00 0%, #ec9f05 74%);
+  border-radius: 10px 10px 0px 0px;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+.sub-container-1-head h4, .sub-container-1-head .h4,
+.sub-container-2-head h4,
+.sub-container-2-head .h4 {
+  margin-bottom: 0 !important;
+}
+
+.sub-container-1-article-1,
+.sub-container-2-article-1,
+.sub-container-2-article-2,
+.sub-container-2-article-3,
+.sub-container-2-article-4,
+.sub-container-2-article-5 {
+  background-color: #f0eeee !important;
+  padding-left: 3px;
+  border-bottom: 1px solid #f3d1b0 !important;
+}
+.sub-container-1-article-1 svg,
+.sub-container-2-article-1 svg,
+.sub-container-2-article-2 svg,
+.sub-container-2-article-3 svg,
+.sub-container-2-article-4 svg,
+.sub-container-2-article-5 svg {
+  margin-right: 3px;
+}
+.sub-container-1-article-1 p,
+.sub-container-2-article-1 p,
+.sub-container-2-article-2 p,
+.sub-container-2-article-3 p,
+.sub-container-2-article-4 p,
+.sub-container-2-article-5 p {
+  font-size: 150%;
+  margin-bottom: 0px !important;
+}
+
+.sub-container-2-article-1 {
+  border-radius: 5px 5px 0px 0px;
+}
+
+h4, .h4 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sub-container-1-article-1 p {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px;
+}
+
+.sub-container-3 {
+  border-radius: 5px !important;
 }
 
 /*# sourceMappingURL=screen.css.map */
