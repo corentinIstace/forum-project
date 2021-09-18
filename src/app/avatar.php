@@ -13,7 +13,7 @@ require_once 'config/config.php';
 class Users extends DatabaseManager
 {
   // Set an avatar to an user
-  public function setUserAvatar($id, $avatar)
+  public function setAvatar($id, $avatar)
   {
     $db = $this->connectDb();
     $req = $db->prepare("UPDATE users
@@ -24,6 +24,22 @@ class Users extends DatabaseManager
       'avatar' => $avatar
     ]);
   }
+
+  public function getAvatar($user)
+  {
+    // get avatar for display
+    // If not available in user (from db), get the gravatar's user
+    $gravatar = new Gravatar;
+    if(!$user['avatar']){
+      if($gravatar->setEmail($user['email'])){
+        // get from Gratavar
+        return $gravatar->getSrc();      
+      }
+      return "";
+    }
+    return uncompressAvatar($user['avatar']);
+  }
+
   // Get user
   public function getUser($id)
   {
@@ -32,6 +48,7 @@ class Users extends DatabaseManager
     $req->execute(['id'=>$id]);
     return $req->fetch(PDO::FETCH_ASSOC);
   }
+
   // Use the compress sql function if available
   public function compress($data)
   {
@@ -55,23 +72,14 @@ Function getAvatar($id)
     echo "ID invalid";
     return;
   }
-  $user = (new Users)->getUser($id);
+  $model = new Users;
+  $user = $model->getUser($id);
   if(!$user){
     echo "User not found";
     return;
   }
 
-  // get avatar for display
-  // If not available in user (from db), get the gravatar's user
-  $gravatar = new Gravatar;
-  if(!$user['avatar']){
-    if($gravatar->setEmail($user['email'])){
-      // get from Gratavar
-      return $gravatar->getSrc();      
-    }
-    return "";
-  }
-  return uncompressAvatar($user['avatar']);
+  return $model->getAvatar($user);
 }
 
 function updateAvatar($id, $avatar)
@@ -88,7 +96,7 @@ function updateAvatar($id, $avatar)
     return;
   }
 
-  (new Users)->setUserAvatar($id, $avatar);
+  (new Users)->setAvatar($id, $avatar);
 }
 
 // Get an avatar url and return it sanitized
