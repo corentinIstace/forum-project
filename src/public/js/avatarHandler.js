@@ -10,21 +10,21 @@ let imageSize;
 function sendForm() {
   let img = document.getElementById("previewDisplay");
   let uploaderForm = document.getElementById("uploaderForm");
-  if ((img.src = "" || !isImageBelowSize(img, MAX_WIDTH, MAX_HEIGHT))) {
+  if ((img.src = "" || !isImageBelowSize(img))) {
     return;
   }
   uploaderForm.submit();
 }
 
 // Check if size is below rule size, alert the user if above
-function isImageBelowSize(image, MAX_WIDTH, MAX_HEIGHT) {
+function isImageBelowSize(image) {
   //console.log("Check img size", image.width, image.height, image);
   if (image.width > MAX_WIDTH || image.height > MAX_HEIGHT) {
     alert(`Image cannot have a size above ${MAX_WIDTH}*${MAX_HEIGHT} pixels`);
     return false;
   }
   if (imageSize > MAX_BYTE_SIZE) {
-    alert(`Image file cannot exceed ${MAX_BYTE_SIZE / 1024} KB`);
+    alert(`Image file cannot exceed ${(MAX_BYTE_SIZE + 1) / 1024} KB`);
     return false;
   }
   return true;
@@ -56,6 +56,7 @@ function previewFile() {
   );
 
   if (file) {
+    imageSize = file.size;
     reader.readAsDataURL(file);
   }
 }
