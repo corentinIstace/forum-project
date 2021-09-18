@@ -34,7 +34,10 @@ switch ($page) {
   case 'categories': // http://127.0.0.1/public/index.php?page=categories
     (new BoardController())->listBoards();
     break;
-  case 'addboard';
+  case 'category':
+    (new BoardController())->getSingleBoard();
+    break;
+  case 'addboard':
     (new BoardController())->addBoard();
     break;
   case 'editBoard':

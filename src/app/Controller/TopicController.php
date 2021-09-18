@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once '../app/Model/Topic.php';
 require_once '../app/Model/Topics.php';
+require_once '../app/Model/Messages.php';
 
 class TopicController
 {
@@ -38,16 +39,18 @@ class TopicController
   {
     // Check if a valid id is sent then display the topic view
     $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
+    $id = filter_var($id, FILTER_VALIDATE_INT);
     if (!$id) {
       $this->addError("id", "Invalid");
     }
     if (!$this->isValide()) {
       return false;
     }
+    // Get the topic and its messages then display the view
     $model = new Topics();
     $topic = $model->getSingleTopic($id);
-    // TODO get messages
-    $messages = [];
+    $model = new Messages();
+    $messages = $model->getMessages($id);
     require '../app/View/topics/topic.php';
   }
 

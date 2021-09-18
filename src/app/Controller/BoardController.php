@@ -20,6 +20,7 @@ class BoardController
       $name = filter_has_var(INPUT_POST, 'name') ? filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING) : null;
       $description = filter_has_var(INPUT_POST, 'description') ? filter_var(trim($_POST['description']), FILTER_SANITIZE_STRING) : null;
       // Validate
+      $id = filter_var($id, FILTER_VALIDATE_INT);
       if(!$name) { $this->addError("name", "Invalid"); }
       if(!$new && !$id) { $this->addError("id", "Invalid"); }
       if(count($this->errors) > 0) { return false; }
@@ -50,6 +51,24 @@ class BoardController
     return $model->getBoards();
   }
 
+  public function getSingleBoard()
+  {
+    // Validate the asked id then display the category board and its topics
+    $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+    if (!$id) {
+      $this->addError("id", "Invalid");
+    }
+    if (!$this->isValide()) {
+      return false;
+    }
+    $model = new Boards;
+    $board = $model->getSingleBoard($id);
+    $model = new Topics;
+    $topics = $model->getTopics($id);
+    require '../app/View/boards/board.php';
+  }
+
   public function listBoards()
   {
     // Show list of boards or retrieve a clicked board and repath to edit board
@@ -66,8 +85,10 @@ class BoardController
       require '../app/View/boards/listBoards.php';
     }
     else {
-      $id = filter_has_var(INPUT_POST, 'id') ? filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT) : null;      
-      header("Location:index.php?page=editBoard&id=$id");
+      $id = filter_has_var(INPUT_POST, 'id') ? filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT) : null;    
+      $id = filter_var($id, FILTER_VALIDATE_INT);  
+      if($id) {header("Location:index.php?page=editBoard&id=$id");}
+      else { /* TODO error find board */}
     }
   }
 
@@ -97,6 +118,10 @@ class BoardController
     if(count($_POST) == 0) {
       $id = isset($_GET['id']) ? filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT) : null;
       $id = filter_var($id, FILTER_VALIDATE_INT);
+      if(!$id) { 
+        // TODO display error
+        return;
+      }
       $model = new Boards;
       $board = $model->getSingleBoard($id);
       // TODO check if text with spaces can be sent with get
@@ -132,6 +157,7 @@ class BoardController
         }
         else { /* TODO error */}
       }
+      else { /* TODO error */}
     }
   }
 }

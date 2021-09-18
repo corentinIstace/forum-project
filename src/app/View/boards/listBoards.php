@@ -1,4 +1,3 @@
-
 <section>
   <h1>Category Boards in the forum</h1>
   <?php foreach ($boards as $board) : ?>
