@@ -9,7 +9,7 @@ class Messages extends DatabaseManager
   public function getMessages($topicId)
   {
     $db = $this->connectDb();
-    $req = $db->prepare("SELECT * FROM messages WHERE topic_id = :topic_id ORDER BY id ASC");
+    $req = $db->prepare("SELECT * FROM messages WHERE topic_id = :topic_id ORDER BY creation_date ASC");
     $req->execute(['topic_id' => $topicId]);
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }

@@ -16,7 +16,7 @@ class Topics extends DatabaseManager
   private function fetchTopics($boardId){
     $db = $this->connectDb();
     // Get topics from newers to elders
-    $req = $db->prepare("SELECT * FROM topics WHERE board_id = :board_id ORDER BY id DESC");
+    $req = $db->prepare("SELECT * FROM topics WHERE board_id = :board_id ORDER BY creation_date DESC");
     $req->execute(['board_id'=>$boardId]);
     return $req->fetchAll(PDO::FETCH_ASSOC);
   }
