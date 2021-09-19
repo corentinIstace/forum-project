@@ -1,4 +1,4 @@
-h1{
+#titre{
     text-align: center;
 }
 #containeur_form{
@@ -10,7 +10,7 @@ h1{
     background-color: #B36700;
 
 }
-#form{
+.form{
     display: flex;
     flex-direction: column;
     width: 40%;

@@ -39,7 +39,7 @@
   <h1>Create your acount:</h1>
 
     <section id="containeur_form">
-        <form method="POST" id="form">
+        <form method="POST" class="form">
             <label for="avatar">Choose a profile picture:</label>
                 <input type="file" name="avatar" accept="image/png, image/jpeg">
             <label for="nickname">Nickname:</label>

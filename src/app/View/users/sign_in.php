@@ -36,12 +36,11 @@
 
   </header>
 <main>
+    
 <body>
-    <h1>Connexion:</h1>
+    <h1 id="titre">Connexion:</h1>
     <section id="containeur_form">
-        <form action="" method="POST" id="form">
-            <input type="file" name="avatar" accept="image/png, image/jpeg">
-            <hr width="25%">
+        <form action="" method="POST" class="form">
             <label for="email">E-mail</label>
             <input type="email" name="email" value="">
             <label for="password">Password</label>
