@@ -22,40 +22,15 @@
         </div>
     </section>
     <section class="black-footer">
-      <div class="black-footer-ariane">
-        <nav class="breadcrumbF" ;aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Board Index</li>
-          </ol>
-        </nav>
-      </div>
-      <div class="black-footer-logos">
-        <a href="#">
-          <i class="fas fa-envelope"><p class="paragraph ml-3 ">Contact us</p></i>
-        </a>
-        <a href="#">
-          <i class="fas fa-shield-alt"><p class="paragraph ml-3 ">The Team</p></i>
-        </a>
-        <a href="#">
-          <i class="fas fa-check"><p class="paragraph ml-3 ">Terms</p></i>
-        </a>
-        <a href="#">
-          <i class="fas fa-lock"><p class="paragraph ml-3 ">Privacy</p></i>
-        </a>
-        <a href="#">
-          <i class="fas fa-users"><p class="paragraph ml-3 ">Members</p></i>
-        </a>
-        <a href="#">
-          <i class="fas fa-trash-alt"><p class="paragraph ml-3 ">Delete cookies</p></i>
-        </a>
-        <p>All times are UTC</p>
-      </div>
+      <i class="fas fa-envelope">Contact us</i>
+      <i class="fas fa-shield-alt">The team</i>
+      <i class="fas fa-check">Terms</i>
+      <i class="fas fa-lock">Privacy</i>
+      <i class="fas fa-users">Members</i>
+      <i class="fas fa-trash-alt">Delete cookies</i>
+      <p>All times are UTC</p>
     </section>
     <section class="powered-by">
-      <a href="">Powered by <span class="couchpotatoes">Couch Potatoes</span> </a>
+      <a href="">Powered by Couch Potatoes</a>
     </section>
-    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-</footer>
+  </footer>
