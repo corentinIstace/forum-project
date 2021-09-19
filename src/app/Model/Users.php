@@ -41,7 +41,20 @@ class Users extends DatabaseManager
       }
       return "";
     }
-    return uncompressAvatar($user['avatar']);
+    return $this::uncompressAvatar($user['avatar']);
+  }
+
+  // Pass the avatar url in gzdeflate to produce a compressed url string
+  public function compressAvatar($avatar)
+  {
+    if(!$avatar) { return false; }
+    return gzdeflate($avatar, 6);
+  }
+
+  // Get an avatar from DB, uncompress it with gzinflate
+  public function uncompressAvatar($avatar)
+  {
+    return gzinflate($avatar);
   }
 
   public function changeNickname(){
