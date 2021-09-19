@@ -9,8 +9,11 @@ class UserController
 {
   public function displayProfile()
   {
+    if(!isset($_SESSION) && !isset($_SESSION['user_id'])){
+      echo "You are disconnected.";
+      return;
+    }
     $user = new UserSession();
-    $user -> logout();
     require "../app/View/users/profilPage.php";
   }
 
