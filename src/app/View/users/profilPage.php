@@ -24,40 +24,10 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
-  <header>
-    
-    <!-- Background image -->
-    <div class="mask gradient-custom">
-        <div class="d-flex justify-content-center align-items-center h-100">
-        <h1 class="text-white mb-0">The ring's Forum</h1>
-      </div>
-    </div>
-    <!-- Background image -->
-
-  </header>
   <main>
-    <body>
+        <?php require '../app/View/includes/header.php'; ?>
         <header>
-          <h1>Welcome <?= $_SESSION['user_nickname'] ?></h1>
-          <br>
-          <section id="containeur_form">
-            <section form="form" id="avatar_change">
-              <h2>Change your avatar:</h2>
-              <div id="uploadImage">
-                <div id="preview">
-                  <img id="previewDisplay" src="<?= $avatar ?? '' ?>" >
-                </div>
-              </div>
-              <form id="imageInput">
-                <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
-              </form>
-              <form action="../public/index.php?page=profile" method="post" id="uploaderForm">
-                <input type="text" name="avatar" id="avatar" hidden="true" />
-                <button type="button" onclick="sendForm()" >Send new avatar</button>
-              </form>
-              <script src="../public/js/avatarHandler.js"></script>
-            </section>
-          </section>
+          <h1 id="titre">Welcome <?= $_SESSION['user_nickname'] ?></h1>
         </header>
         <nav>
             <ul>
@@ -105,46 +75,32 @@
             </form> 
         </section>
         </section>
+        <section id="avatar_change">
+          <h2>Change your avatar:</h2>
+          <section id="containeur_form">
+            <section form="form" class="form">
+              <div id="uploadImage">
+                <div id="preview">
+                  <img id="previewDisplay" src="<?= $avatar ?? '' ?>" >
+                </div>
+              </div>
+              <form id="imageInput">
+                <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
+              </form>
+              <form action="../public/index.php?page=profile" method="post" id="uploaderForm">
+                <input type="text" name="avatar" id="avatar" hidden="true" />
+                <button type="button" onclick="sendForm()" >Send new avatar</button>
+              </form>
+              <script src="../public/js/avatarHandler.js"></script>
+            </section>
+          </section>
+          </section>
         
         <section id="activities">
           <h2>Your Activities:</h2>
         
         </section>
-        </main>
-    <footer>
-      <section class="white-footer">
-        <!-- Grid container -->
-        <div class="container p-4">
-          <!-- Section: Social media -->
-          <section class="mb-4">
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating border rounded-circle m-1 " href="#!" role="button"><i class="fab fa-twitter"></i></a>
-            <!-- Apple -->
-            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-apple"></i></a>
-            <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-            <!-- Code Pen -->
-            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"> <i class="fab fa-codepen"></i></a>
-            <!-- Google -->
-            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
-            <!-- Digg -->
-            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-digg"></i></a>
-            <!-- Pinterest -->
-            <a class="btn btn-outline-light btn-floating border rounded-circle m-1" href="#!" role="button"><i class="fab fa-pinterest"></i></a>
-          </section>
-      </section>
-      <section class="black-footer">
-        <i class="fas fa-envelope">Contact us</i>
-        <i class="fas fa-shield-alt">The team</i>
-        <i class="fas fa-check">Terms</i>
-        <i class="fas fa-lock">Privacy</i>
-        <i class="fas fa-users">Members</i>
-        <i class="fas fa-trash-alt">Delete cookies</i>
-        <p>All times are UTC</p>
-      </section>
-      <section class="powered-by">
-        <a href="">Powered by Couch Potatoes</a>
-      </section>
-    </footer>
+  </main>
+      <?php require '../app/View/includes/footer.php'; ?>  
     </body>
 </html>
