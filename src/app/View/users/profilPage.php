@@ -38,8 +38,28 @@
   <main>
     <body>
         <header>
-            <h1>Welcome <?= $_SESSION['user_nickname'] ?></h1>
-            <img src="" alt="img avatar">
+          <h1>Welcome <?= $_SESSION['user_nickname'] ?></h1>
+          <br>
+          <section id="containeur_form">
+            <section form="form" id="avatar_change">
+              <h2>Change your avatar:</h2>
+              <div id="uploadImage">
+                <div id="preview">
+                  <img id="previewDisplay" src="<?= $avatar ?? '' ?>" >
+                  <p id="pre">preview</p>
+                </div>
+                <p>Upload Image</p>
+              </div>
+              <form  id="imageInput">
+                <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
+              </form>
+              <form action="" method="post" id="uploaderForm">
+                <input type="text" name="avatar" id="avatar" hidden="true" />
+                <button type="button" onclick="sendForm()" >Send new avatar</button>
+              </form>
+              <script src="../public/js/avatarHandler.js"></script>
+            </section>
+          </section>
         </header>
         <nav>
             <ul>
@@ -86,25 +106,6 @@
                  <input type='submit' name='changePassword' value='Change password'>
             </form> 
         </section>
-        </section>
-        
-        <section id="avatar_change">
-          <h2>Change your avatar:</h2>
-          <div id="uploadImage">
-            <div id="preview">
-              <img id="previewDisplay" src="<?= $avatarSource ?? '' ?>" >
-              <p id="pre">preview</p>
-            </div>
-            <p>Upload Image</p>
-          </div>
-          <form class="form" id="imageInput">
-            <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
-          </form>
-          <form action="" method="post" id="uploaderForm">
-            <input type="text" name="avatar" id="avatar" hidden="true" />
-            <button type="button" onclick="sendForm()" >Send new avatar</button>
-          </form>
-          <script src="../public/js/avatarHandler.js"></script>
         </section>
         
         <section id="activities">
