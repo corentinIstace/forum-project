@@ -90,13 +90,14 @@ function updateAvatar($id, $avatar)
     echo "ID invalid";
     return;
   }
-  $user = (new Users)->getUser($id);
+  $model = new Users;
+  $user = $model->getUser($id);
   if(!$user){
     echo "User not found";
     return;
   }
 
-  (new Users)->setAvatar($id, $avatar);
+  $model->setAvatar($id, $avatar);
 }
 
 // Get an avatar url and return it sanitized
