@@ -3,14 +3,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Comment and reply system in PHP</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="main.css">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="../../public/css/screen.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/9b934638d1.js" crossorigin="anonymous"></script>
+
+  <title>Seigneur Des Anneaux</title>
 </head>
 
 <body>
+<?php require '../app/View/includes/header.php'; ?>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 post">
@@ -63,6 +68,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Bootstrap Javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <?php require '../app/View/includes/footer.php'; ?>  
 </body>
 
 </html>
