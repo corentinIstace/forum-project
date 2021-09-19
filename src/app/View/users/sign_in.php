@@ -39,7 +39,7 @@
 <body>
     <h1 id="titre">Connexion:</h1>
     <section id="containeur_form">
-        <form action="" method="POST" id="form">
+        <form action="" method="POST" class="form">
             <label for="email">E-mail</label>
             <input type="email" name="email" value="">
             <label for="password">Password</label>

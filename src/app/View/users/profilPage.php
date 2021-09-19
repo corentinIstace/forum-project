@@ -63,7 +63,7 @@
         <section id="name_change">
             <h2>Change your Nickname:</h2>
             <section id="containeur_form">
-            <form method="post" action="../app/index.php?page=profile" id="form">
+            <form method="post" action="../app/index.php?page=profile" class="form">
                 <label for="id">ID</label>
                 <input type='number' name='id'><br><br>
                 <label for="nickname">Current nickname</label>
@@ -78,7 +78,7 @@
         <section id="password_change">
         <h2>Change your password:</h2>
         <section id="containeur_form">
-            <form method="post" action="../app/index.php?page=profile" id="form">
+            <form method="post" action="../app/index.php?page=profile" class="form">
                 <label for="password">Current password</label>
                     <input type='text' name='password'><br><br>
                 <label for="new_password">New password</label>
