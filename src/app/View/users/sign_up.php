@@ -36,10 +36,12 @@
 
   </header>
   <main>
-  <h1>Create your acount:</h1>
+  <h1 id="titre">Create your acount:</h1>
+
+  <img src="/src/public/images/arbre.jpg" alt="image d'arbre">
 
     <section id="containeur_form">
-        <form method="POST" class="form">
+        <form method="POST" id="form">
             <label for="avatar">Choose a profile picture:</label>
                 <input type="file" name="avatar" accept="image/png, image/jpeg">
             <label for="nickname">Nickname:</label>
@@ -50,7 +52,7 @@
                     <input type="text" name="signature" >
             <label for="password">Password:</label>
                 <input type="password" name="password" >
-            <input type="submit" name="submit" value="Created acount.">
+            <input type="submit" name="submit" value="Create acount.">
         </form>
     </section>
  </main>

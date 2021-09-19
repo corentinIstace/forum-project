@@ -6,31 +6,32 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 50px;
     padding-bottom: 70px;
-    background-color: #be7003;
+    height: 460pxpx;
 
 }
-.form{
+#form{
     display: flex;
     flex-direction: column;
     width: 40%;
     border: 2px solid black;
     border-radius: 10px;
     background-color: rgb(252, 222, 168);
+    box-shadow: -5px -5px 15px 5px #000000;
+
 
 
     label{
         text-decoration: underline;
     }
     input{
-        width: 25%;
+        width: 30%;
         margin: auto;
         margin-bottom: 15px;
-        border: 1px solid red;
+        border: 1px solid black;
         border-radius: 3px;
     }
-}
-main{
-    background-color: #be7003;
+    input[type="submit"]{
+        margin-top: 50px;
+    }
 }

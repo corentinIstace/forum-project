@@ -38,8 +38,7 @@
   <main>
     <body>
         <header>
-            <h1>Welcome <?= $_SESSION['user_nickname'] ?></h1>
-            <img src="" alt="img avatar">
+            <h1 id="titre">Welcome <?= $_SESSION['user_nickname'] ?></h1>
         </header>
         <nav>
             <ul>
@@ -96,7 +95,7 @@
         <h2>Your Activities:</h2>
         
         </section>
-        </main>
+  </main>
     <footer>
       <section class="white-footer">
         <!-- Grid container -->
