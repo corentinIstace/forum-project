@@ -86,9 +86,10 @@
             </form> 
         </section>
         </section>
-        <section id="containeur_form">
+        <section id="avatar_change">
+          <h2>Change your avatar:</h2>
+          <section id="containeur_form">
             <section form="form" class="form">
-              <h2>Change your avatar:</h2>
               <div id="uploadImage">
                 <div id="preview">
                   <img id="previewDisplay" src="<?= $avatar ?? '' ?>" >
@@ -103,6 +104,7 @@
               </form>
               <script src="../public/js/avatarHandler.js"></script>
             </section>
+          </section>
           </section>
         
         <section id="activities">
