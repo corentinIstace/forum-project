@@ -40,10 +40,10 @@
       </section>
     <?php endforeach; ?>
     <?php if(isset($_SESSION) && $_SESSION['user_nickname']): /* If topic displayed while connected, show a form to add a message */?>
-      <form class="clearfix" method="post" id="comment_form">
+      <form class="clearfix" action="../public/index.php?page=topic&id=<?= $topic['id'] ?>" method="post" id="comment_form">
         <h4>Post a reply:</h4>
         <?php if(!$topic['isLock']): ?>
-          <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+          <textarea name="message" id="message" class="form-control" cols="30" rows="3"></textarea>
           <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Post Reply</button>
         <?php else: ?>
           <p>Locked by owner</p>
