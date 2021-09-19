@@ -13,9 +13,10 @@ class UserController
       echo "You are disconnected.";
       return;
     }
-    $user = new UserSession();
-    /* $model = new Users();
-    $avatar = $model->getAvatar($_SESSION['user_id']); */
+    $userSession = new UserSession();
+    $model = new Users();
+    $user = $model->getUSer($_SESSION['user_id']);
+    $avatar = $model->getAvatar($user);
     require "../app/View/users/profilPage.php";
   }
 
@@ -54,7 +55,7 @@ class UserController
     }
     // Get posted avatar, sanitize, compress and validate it then proceed to update
     $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : null;
-    $avatar = validateAvatar(compressAvatar(sanitizeAvatar($avatar)));
+    $avatar = validateAvatar($model->compressAvatar(sanitizeAvatar($avatar)));
     if(!$avatar){ // TODO errors
       return false;
     }
@@ -71,25 +72,12 @@ class UserController
   }
 
   // Get an avatar url and make validation on length
-  function validateAvatar($avatar)
+  public function validateAvatar($avatar)
   {
     if(gettype($avatar) != "string") { echo "<br>An error occured during conversion of the image."; }// TODO errors
     if(strlen($avatar) > MAX_BYTE_SIZE) { echo "<br>Failed size validation : " . strlen($avatar) . " " . MAX_BYTE_SIZE; }// TODO errors
     if(!$avatar || $avatar == "") { return false; }
     if(gettype($avatar) != "string" || strlen($avatar) > MAX_BYTE_SIZE) { return false; }
     return $avatar;
-  }
-
-  // Pass the avatar url in gzdeflate to produce a compressed url string
-  function compressAvatar($avatar)
-  {
-    if(!$avatar) { return false; }
-    return gzdeflate($avatar, 6);
-  }
-
-  // Get an avatar from DB, uncompress it with gzinflate
-  function uncompressAvatar($avatar)
-  {
-    return gzinflate($avatar);
   }
 }
