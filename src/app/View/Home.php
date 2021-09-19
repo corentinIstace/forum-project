@@ -12,6 +12,7 @@
 
   <title>Seigneur Des Anneaux</title>
 </head>
+<body>
 <header>
   <!-- Background image -->
   <div class="mask gradient-custom">
@@ -38,7 +39,6 @@
   </div>
   <!-- Background image -->
 </header>
-<body>
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
