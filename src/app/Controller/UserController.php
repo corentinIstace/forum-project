@@ -14,6 +14,8 @@ class UserController
       return;
     }
     $user = new UserSession();
+    /* $model = new Users();
+    $avatar = $model->getAvatar($_SESSION['user_id']); */
     require "../app/View/users/profilPage.php";
   }
 

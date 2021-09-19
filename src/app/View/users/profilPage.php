@@ -50,7 +50,7 @@
                 </div>
                 <p>Upload Image</p>
               </div>
-              <form  id="imageInput">
+              <form class="form" id="imageInput">
                 <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
               </form>
               <form action="" method="post" id="uploaderForm">
