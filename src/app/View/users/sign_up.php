@@ -36,7 +36,7 @@
 
   </header>
   <main>
-  <h1>Created your acount:</h1>
+  <h1>Create your acount:</h1>
 
     <section id="containeur_form">
         <form method="POST" id="form">
