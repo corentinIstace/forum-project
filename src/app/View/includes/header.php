@@ -17,9 +17,11 @@
               <button class="log-in-button"><a href="../app/index.php?page=sign_in">Log in</a></button>
         </div>
       </section>
-      <div class="d-flex justify-content-center align-items-center h-100">
-        <h1 class="text-white mb-0">The ring's Forum</h1>
-      </div>
+        <a href="index.php">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <h1 class="text-white mb-0">The ring's Forum</h1>
+          </div>
+        </a>
     </div>
     <!-- Background image -->
 </header>
