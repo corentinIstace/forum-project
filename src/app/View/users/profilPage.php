@@ -39,25 +39,6 @@
     <body>
         <header>
           <h1 id="titre">Welcome <?= $_SESSION['user_nickname'] ?></h1>
-          <br>
-          <section id="containeur_form">
-            <section form="form" id="avatar_change">
-              <h2>Change your avatar:</h2>
-              <div id="uploadImage">
-                <div id="preview">
-                  <img id="previewDisplay" src="<?= $avatar ?? '' ?>" >
-                </div>
-              </div>
-              <form id="imageInput">
-                <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
-              </form>
-              <form action="../public/index.php?page=profile" method="post" id="uploaderForm">
-                <input type="text" name="avatar" id="avatar" hidden="true" />
-                <button type="button" onclick="sendForm()" >Send new avatar</button>
-              </form>
-              <script src="../public/js/avatarHandler.js"></script>
-            </section>
-          </section>
         </header>
         <nav>
             <ul>
@@ -105,6 +86,24 @@
             </form> 
         </section>
         </section>
+        <section id="containeur_form">
+            <section form="form" class="form">
+              <h2>Change your avatar:</h2>
+              <div id="uploadImage">
+                <div id="preview">
+                  <img id="previewDisplay" src="<?= $avatar ?? '' ?>" >
+                </div>
+              </div>
+              <form id="imageInput">
+                <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
+              </form>
+              <form action="../public/index.php?page=profile" method="post" id="uploaderForm">
+                <input type="text" name="avatar" id="avatar" hidden="true" />
+                <button type="button" onclick="sendForm()" >Send new avatar</button>
+              </form>
+              <script src="../public/js/avatarHandler.js"></script>
+            </section>
+          </section>
         
         <section id="activities">
           <h2>Your Activities:</h2>

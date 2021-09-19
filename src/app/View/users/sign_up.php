@@ -40,8 +40,8 @@
 
   <img src="/src/public/images/arbre.jpg" alt="image d'arbre">
 
-    <section id="containeur_form">
-        <form method="POST" id="form">
+    <section id="containeur_form1">
+        <form method="POST" id="form2">
             <label for="avatar">Choose a profile picture:</label>
                 <input type="file" name="avatar" accept="image/png, image/jpeg">
             <label for="nickname">Nickname:</label>
