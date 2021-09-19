@@ -1,3 +1,17 @@
 h2{
     text-align: center;
+    margin-left: 25px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+ul{
+    display: flex;
+    border: 3px solid black;
+    border-radius: 4px;
+
+    li{
+        flex-direction: row;
+    }
 }
