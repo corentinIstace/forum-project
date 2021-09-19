@@ -51,6 +51,12 @@ class TopicController
     $topic = $model->getSingleTopic($id);
     $model = new Messages();
     $messages = $model->getMessages($id);
+    // Get author nickname for each message
+    $model = new Users();
+    $messageNumber = count($messages);
+    for( $i = 0 ; $i < $messageNumber ; $i++ ){
+      $messages[$i]['author'] = $model->getUser($messages[$i]['author_id'])['nickname'];
+    }
     require '../app/View/topics/topic.php';
   }
 
