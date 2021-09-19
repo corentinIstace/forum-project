@@ -10,7 +10,7 @@ class UserController
   public function displayProfile()
   {
     $userSession = new UserSession();
-    if(!isset($_SESSION) && !isset($_SESSION['user_id'])){
+    if(!isset($_SESSION) || !isset($_SESSION['user_id'])){
       echo "You are disconnected.";
       return;
     }
