@@ -9,14 +9,19 @@ class UserController
 {
   public function displayProfile()
   {
+    $userSession = new UserSession();
     if(!isset($_SESSION) && !isset($_SESSION['user_id'])){
       echo "You are disconnected.";
       return;
     }
-    $userSession = new UserSession();
+    // Check if the user is sending an avatar and process it
+    if(isset($_POST) && isset($_POST['avatar'])){
+      $this::updateAvatar($_SESSION['user_id'], $_POST['avatar']);
+    }
+    // Update avatar in session
     $model = new Users();
     $user = $model->getUSer($_SESSION['user_id']);
-    $avatar = $model->getAvatar($user);
+    $_SESSION['user_avatar'] = $model->getAvatar($user);
     require "../app/View/users/profilPage.php";
   }
 
@@ -42,7 +47,7 @@ class UserController
   public function updateAvatar($id, $avatar)
   {
     // Check if id is valid then if user exist
-    $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
+    $id = $id ? filter_var(trim($id, FILTER_SANITIZE_NUMBER_INT)) : null;
     if(!$id){// TODO errors
       echo "ID invalid";
       return;
@@ -55,7 +60,7 @@ class UserController
     }
     // Get posted avatar, sanitize, compress and validate it then proceed to update
     $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : null;
-    $avatar = validateAvatar($model->compressAvatar(sanitizeAvatar($avatar)));
+    $avatar = $this::validateAvatar($model->compressAvatar($this::sanitizeAvatar($avatar)));
     if(!$avatar){ // TODO errors
       return false;
     }
