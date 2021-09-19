@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once '../app/Model/Topic.php';
 require_once '../app/Model/Topics.php';
 require_once '../app/Model/Messages.php';
+require_once '../app/Controller/MessageController.php';
 
 class TopicController
 {
@@ -46,6 +47,11 @@ class TopicController
     if (!$this->isValide()) {
       return false;
     }
+    // If incoming post data, call MessageController to handle new message
+    if(isset($_POST) && isset($_POST['message'])){
+      (new MessageController())->addMessage();
+    }
+
     // Get the topic and its messages then display the view
     $model = new Topics();
     $topic = $model->getSingleTopic($id);
@@ -60,20 +66,19 @@ class TopicController
     require '../app/View/topics/topic.php';
   }
 
-  public function replyTopic()
+  /* public function replyTopic()
   {
     // Check if a valid id is sent then display the reply form
-    $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
-    if (!$id) {
-      $this->addError("id", "Invalid");
+    $message = filter_has_var(INPUT_GET, 'message') ? filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING) : null;
+    if (!$message) {
+      $this->addError("message", "Invalid");
     }
     if (!$this->isValide()) {
       return false;
     }
     $model = new Topics();
-    $topic = $model->getSingleTopic($id);
-    // TODO get messages
-    $messages = [];
-    require '../app/View/topics/replyTopic.php';
-  }
+    //$topic = $model->getSingleTopic($id);
+    $model = new Messages();
+
+  } */
 }

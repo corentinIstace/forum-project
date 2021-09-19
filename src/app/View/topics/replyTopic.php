@@ -1,1 +1,0 @@
-<p>Reply to <br><?= $topic['title'] ?></p>
