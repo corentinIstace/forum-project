@@ -70,7 +70,7 @@
 
             <div class="board-container">
 
-              <h3><?= $board['name'] ?></h3>
+              <h3><a href="../app/index.php?page=category&id=<?= $board['id'] ?>"><?= $board['name'] ?></a></h3>
               <i class="testDescription"><?= $board['description'] ?></i>
               <hr class="board-hr">
               <div class="bottom-boards align-self-sm-end">
