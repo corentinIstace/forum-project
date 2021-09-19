@@ -21,13 +21,11 @@
   <?php require '../app/View/includes/header.php'; ?>
   <section>
     <h1><?= $topic['title'] ?></h1>
-    <button>
       <?php if(!$topic['isLock']): ?>
-        <a href="#comment_form">Post Reply&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-reply"></i><a>
+        <a href="#comment_form"><button>Post Reply&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-reply"></i></button><a>
       <?php else: ?>
-        Locked by owner
+        <button>Locked by owner</button>
       <?php endif; ?>
-    </button>
     <button><i class="fas fa-wrench"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-down"></i></button>
     <?php foreach ($messages as $message) : /* Loop to display messages */?>
       <section>

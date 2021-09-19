@@ -44,7 +44,7 @@ class MessageController
         return [
             'id' => $id,
             'author_id' => $author_id,
-            'topic_id' => $topic_id
+            'topic_id' => $topic_id,
             'message' => $message_content,
         ];
     }
