@@ -23,7 +23,7 @@
     <h1><?= $topic['title'] ?></h1>
     <button>
       <?php if(!$topic['isLock']): ?>
-        <a href="../app/index.php?page=replytopic&id=<?= $topic['id'] ?>">Post Reply&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-reply"></i><a>
+        <a href="#comment_form">Post Reply&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-reply"></i><a>
       <?php else: ?>
         Locked by owner
       <?php endif; ?>
@@ -32,17 +32,22 @@
     <?php foreach ($messages as $message) : /* Loop to display messages */?>
       <section>
           <h3><?= $message['creation_date'] ?></h3><br>
+          <p><?= $message['author'] ?></p><br>
           <p><?= $message['content'] ?></p><br>
-          <?php if(isset($_SESSION) && $message['author_id'] == $_SESSION['id']): ?>
+          <?php if(isset($_SESSION) && $message['author_id'] == $_SESSION['user_id']): ?>
             <button type="submit">Edit message</button><br>
           <?php endif; ?>
       </section>
     <?php endforeach; ?>
-    <?php if(isset($_SESSION) && $_SESSION['name']): /* If topic displayed while connected, show a form to add a message */?>
+    <?php if(isset($_SESSION) && $_SESSION['user_nickname']): /* If topic displayed while connected, show a form to add a message */?>
       <form class="clearfix" method="post" id="comment_form">
-        <h4>Post a comment:</h4>
-        <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
-        <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
+        <h4>Post a reply:</h4>
+        <?php if(!$topic['isLock']): ?>
+          <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+          <button class="btn btn-primary btn-sm pull-right" id="submit_comment">Post Reply</button>
+        <?php else: ?>
+          <p>Locked by owner</p>
+        <?php endif; ?>
       </form>
     <?php endif; ?>
   </section>
