@@ -111,7 +111,6 @@
           <h2>Your Activities:</h2>
         
         </section>
-<<<<<<< Updated upstream
         </main>
     <footer>
       <section class="white-footer">
@@ -148,7 +147,5 @@
         <a href="">Powered by Couch Potatoes</a>
       </section>
     </footer>
-=======
->>>>>>> Stashed changes
     </body>
 </html>
