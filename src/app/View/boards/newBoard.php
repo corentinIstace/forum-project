@@ -1,3 +1,4 @@
+<?php require '../app/View/includes/header.php'; ?>
 <section>
   <?php $new = !isset($_GET['name']) ? TRUE : FALSE ?>
   <?= $new ? "<h3>Create a new category of topics</h3>" : "<h3>Edit category of topics</h3>" ?>
@@ -23,3 +24,4 @@
   <?php } ?>
 
 </section>
+<?php require '../app/View/includes/footer.php'; ?>  

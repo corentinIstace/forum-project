@@ -1,3 +1,4 @@
+<?php require '../app/View/includes/header.php'; ?>
 <section>
   <h1>Category Boards in the forum</h1>
   <?php foreach ($boards as $board) : ?>
@@ -11,3 +12,4 @@
     </section>
   <?php endforeach; ?>
 </section>
+<?php require '../app/View/includes/footer.php'; ?>  
