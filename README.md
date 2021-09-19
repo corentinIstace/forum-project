@@ -102,14 +102,14 @@ Linkedin: https://www.linkedin.com/in/corentin-istace-03681020a/
 Naim Zian
 
 E-mail: naimzian.dev@gmail.com  
-Github: https://github.com/Naim350Z
-Linkedin: https://www.linkedin.com/in/naimzian/
+Github: https://github.com/Naim350Z  
+Linkedin: https://www.linkedin.com/in/naimzian/      
 
 Yves Thirion
 
 E-mail:   
-Github: https://github.com/Yves852
-Linkedin: https://www.linkedin.com/in/yves-thirion-295537215/
+Github: https://github.com/Yves852   
+Linkedin: https://www.linkedin.com/in/yves-thirion-295537215/    
 
 Zoé Ranzy
 
