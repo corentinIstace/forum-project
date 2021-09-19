@@ -2,15 +2,47 @@
 declare(strict_types=1);
 
 require_once '../app/libraries/DatabaseManager.php';
+require_once '../app/libraries/Gravatar.php';
 
 // Class extending dbManager to define access for the users table
 class Users extends DatabaseManager
 {
-  public function getProfileUser()
+  // Get user
+  public function getUser($id)
   {
-    
+    $db = $this->connectDb();
+    $req = $db->prepare("SELECT * FROM users WHERE id=:id");
+    $req->execute(['id'=>$id]);
+    return $req->fetch(PDO::FETCH_ASSOC);
   }
 
+  // Set an avatar to an user
+  public function setAvatar($id, $avatar)
+  {
+    $db = $this->connectDb();
+    $req = $db->prepare("UPDATE users
+                        SET avatar=:avatar
+                        WHERE id=:id");
+    $req->execute([
+      'id' => $id, 
+      'avatar' => $avatar
+    ]);
+  }
+
+  public function getAvatar($user)
+  {
+    // get avatar for display
+    // If not available in user (from db), get the gravatar's user
+    $gravatar = new Gravatar;
+    if(!$user['avatar']){
+      if($gravatar->setEmail($user['email'])){
+        // get from Gratavar
+        return $gravatar->getSrc();      
+      }
+      return "";
+    }
+    return uncompressAvatar($user['avatar']);
+  }
 
   public function changeNickname(){
     if(isset($_POST['changeName'])){
