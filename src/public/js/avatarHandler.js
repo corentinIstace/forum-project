@@ -1,11 +1,15 @@
 const MAX_WIDTH = 150; // Max width size allowed
 const MAX_HEIGHT = 150; // Max height size allowed
-const MAX_BYTE_SIZE = 65535; // Max file size allowed
+
+// May become useful by moving compression burden from server to client, allowing client to check dimension and size while server check only size
+// Currently : client validate only image dimensions and server reject only image url strings above 64 KB
+// Example : an png image of 150*150 pixels with a size of 103 KB will take less than 64 KB after compression and will be saved
+/* const MAX_BYTE_SIZE = 65535; // Max file size allowed */
 
 let base64 = "";
-let imageSize;
+/* let imageSize; */
 
-// Get the image and check if the size is not above 200*200
+// Get the image and check if the size is not above 150*150
 // Then submit the form with the new image
 function sendForm() {
   let img = document.getElementById("previewDisplay");
@@ -23,10 +27,10 @@ function isImageBelowSize(image) {
     alert(`Image cannot have a size above ${MAX_WIDTH}*${MAX_HEIGHT} pixels`);
     return false;
   }
-  if (imageSize > MAX_BYTE_SIZE) {
+  /* if (imageSize > MAX_BYTE_SIZE) {
     alert(`Image file cannot exceed ${(MAX_BYTE_SIZE + 1) / 1024} KB`);
     return false;
-  }
+  } */
   return true;
 }
 
@@ -56,7 +60,7 @@ function previewFile() {
   );
 
   if (file) {
-    imageSize = file.size;
+    /* imageSize = file.size; */
     reader.readAsDataURL(file);
   }
 }
