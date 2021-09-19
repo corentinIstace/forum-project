@@ -39,8 +39,8 @@ class Messages extends DatabaseManager
   private function insertMessage($message)
   {
     $db = $this->connectDb();
-    $req = $db->prepare("INSERT INTO messages (author_id, topic_id, creation_date, content) 
-                            VALUES (:author_id, :topic_id, now(), :content");
+    $req = $db->prepare("INSERT INTO messages (author_id, topic_id, creation_date, edition_date, content) 
+                                      VALUES (:author_id, :topic_id, NOW(), NULL, :content)");
     $req->execute($message);
   }
 
@@ -49,10 +49,9 @@ class Messages extends DatabaseManager
     $message = [
       'author_id' => $message['author_id'],
       'topic_id' => $message['topic_id'],
-      'creation_date' => $message['creation_date'],
       'content' => $message['message']
     ];
-    $this->insertMessage($messages);
+    $this->insertMessage($message);
   }
 
   // Receives a user id and returns the username

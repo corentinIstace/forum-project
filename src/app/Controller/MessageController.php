@@ -14,16 +14,13 @@ class MessageController
         $this->errors[$value] = $message;
     }
 
-    private function getValidateMessage($new)
+    private function getValidateMessage($new, $topic_id)
     {
         // Sanitize
         $id = isset($_POST['id']) ? filter_var(trim($_POST['id']), FILTER_SANITIZE_NUMBER_INT) : null;
         $message = isset($_POST['message']) ? filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING) : null;
-        $author_id = isset($_POST['author_id']) ? filter_var(trim($_POST['author_id']), FILTER_SANITIZE_NUMBER_INT) : null;
-        $topic_id = isset($_POST['topic_id']) ? filter_var(trim($_POST['topic_id']), FILTER_SANITIZE_NUMBER_INT) : null;
-        // Validate
-        $author_id = filter_var($author_id, FILTER_VALIDATE_INT);
-        $topic_id = filter_var($topic_id, FILTER_VALIDATE_INT);
+
+        $author_id = $_SESSION['user_id'];
 
         if (!$message) {
             $this->addError("message", "Invalid");
@@ -45,7 +42,7 @@ class MessageController
             'id' => $id,
             'author_id' => $author_id,
             'topic_id' => $topic_id,
-            'message' => $message_content,
+            'message' => $message,
         ];
     }
 
@@ -62,15 +59,15 @@ class MessageController
         return true;
     }
 
-    public function addMessage()
+    public function addMessage($topic_id)
     {
         // Send the form view then handle form data for insertion of a message
         if (isset($_POST) && isset($_POST['message'])) {
             // Retrieve data from the form, proceed validation and insertion
-            $message = $this->getValidateMessage(TRUE);
+            $message = $this->getValidateMessage(TRUE, $topic_id);
             if ($this->isValide()) {
                 // Nothing wrong, will proceed the insertion
-                $model = new Message;
+                $model = new Messages;
                 $model->setMessage($message);
             }
         }

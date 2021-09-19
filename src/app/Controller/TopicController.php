@@ -39,9 +39,9 @@ class TopicController
   public function displayTopic()
   {
     // Check if a valid id is sent then display the topic view
-    $id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
-    $id = filter_var($id, FILTER_VALIDATE_INT);
-    if (!$id) {
+    $topic_id = filter_has_var(INPUT_GET, 'id') ? filter_var(trim($_GET['id']), FILTER_SANITIZE_NUMBER_INT) : null;
+    $topic_id = filter_var($topic_id, FILTER_VALIDATE_INT);
+    if (!$topic_id) {
       $this->addError("id", "Invalid");
     }
     if (!$this->isValide()) {
@@ -49,14 +49,14 @@ class TopicController
     }
     // If incoming post data, call MessageController to handle new message
     if(isset($_POST) && isset($_POST['message'])){
-      (new MessageController())->addMessage();
+      (new MessageController())->addMessage($topic_id);
     }
 
     // Get the topic and its messages then display the view
     $model = new Topics();
-    $topic = $model->getSingleTopic($id);
+    $topic = $model->getSingleTopic($topic_id);
     $model = new Messages();
-    $messages = $model->getMessages($id);
+    $messages = $model->getMessages($topic_id);
     // Get author nickname for each message
     $model = new Users();
     $messageNumber = count($messages);
