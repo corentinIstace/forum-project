@@ -37,7 +37,7 @@
     <!-- Background image -->
 
   </header>
- <main>
+  <main>
   <h1>Created your acount:</h1>
 
     <section id="containeur_form">
@@ -55,7 +55,7 @@
             <input type="submit" name="submit" value="Created acount.">
         </form>
     </section>
-    </main>
+ </main>
     <footer>
       <section class="white-footer">
         <!-- Grid container -->
