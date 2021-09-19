@@ -89,13 +89,29 @@
         </section>
         
         <section id="avatar_change">
-        <h2>Change your avatar:</h2>
+          <h2>Change your avatar:</h2>
+          <div id="uploadImage">
+            <div id="preview">
+              <img id="previewDisplay" src="<?= $avatarSource ?? '' ?>" >
+              <p id="pre">preview</p>
+            </div>
+            <p>Upload Image</p>
+          </div>
+          <form class="form" id="imageInput">
+            <input id="imageFile" type="file" onchange="previewFile()" accept="image/*" /><br />
+          </form>
+          <form action="" method="post" id="uploaderForm">
+            <input type="text" name="avatar" id="avatar" hidden="true" />
+            <button type="button" onclick="sendForm()" >Send new avatar</button>
+          </form>
+          <script src="../public/js/avatarHandler.js"></script>
         </section>
         
         <section id="activities">
-        <h2>Your Activities:</h2>
+          <h2>Your Activities:</h2>
         
         </section>
+<<<<<<< Updated upstream
         </main>
     <footer>
       <section class="white-footer">
@@ -132,5 +148,7 @@
         <a href="">Powered by Couch Potatoes</a>
       </section>
     </footer>
+=======
+>>>>>>> Stashed changes
     </body>
 </html>
