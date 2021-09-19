@@ -1,14 +1,12 @@
 .main-part-forum {
-  position: relative;
-  background-color: rgb(253, 181, 114);
-  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
-    5px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000,
-    5px 5px 15px 5px rgba(0, 0, 0, 0);
-  margin: 5% 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: rgb(252, 222, 168);
+
+  margin: 5% 1%;
   z-index: 10;
   width: 90%;
-  height: 60%;
   margin-top: -15px;
   border-radius: 5px;
   padding: 1% 3%;
@@ -17,4 +15,55 @@
 .breadcrumb {
   background-color: transparent !important;
   width: 300px;
+}
+.board-container {
+  background-color: white !important;
+  height: 145px;
+  width: 30%;
+  font-size: 80%;
+  border-radius: 10px !important;
+  padding: 3px !important;
+  margin: 6px !important;
+}
+h3 {
+  font-size: 200% !important;
+}
+.article-dn {
+  display: none !important;
+}
+.board-hr {
+  width: 20%;
+  margin-top: 10px !important;
+}
+.topics {
+  display: flex;
+  flex-flow: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  p {
+    margin: 0 !important;
+  }
+}
+.posts {
+  display: flex;
+  flex-flow: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  p {
+    margin: 0 !important;
+  }
+}
+.last-post {
+  display: flex;
+  flex-flow: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  p {
+    margin: 0 !important;
+  }
+}
+.bottom-boards {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-self: flex-end !important;
 }
