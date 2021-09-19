@@ -45,7 +45,7 @@
               <h2>Change your avatar:</h2>
               <div id="uploadImage">
                 <div id="preview">
-                  <img id="previewDisplay" src="<?= $_SESSION['user_avatar'] ?? '' ?>" >
+                  <img id="previewDisplay" src="<?= $avatar ?? '' ?>" >
                 </div>
               </div>
               <form id="imageInput">

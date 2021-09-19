@@ -21,7 +21,8 @@ class UserController
     // Update avatar in session
     $model = new Users();
     $user = $model->getUSer($_SESSION['user_id']);
-    $_SESSION['user_avatar'] = $model->getAvatar($user);
+    $avatar = $model->getAvatar($user);
+    //$_SESSION['user_avatar'] = $model->getAvatar($user);
     require "../app/View/users/profilPage.php";
   }
 
