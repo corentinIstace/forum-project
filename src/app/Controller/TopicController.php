@@ -127,20 +127,4 @@ class TopicController
     ]);
     header("Location:index.php?page=category&id=$board_id");
   }
-  
-  /* public function replyTopic()
-  {
-    // Check if a valid id is sent then display the reply form
-    $message = filter_has_var(INPUT_GET, 'message') ? filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING) : null;
-    if (!$message) {
-      $this->addError("message", "Invalid");
-    }
-    if (!$this->isValide()) {
-      return false;
-    }
-    $model = new Topics();
-    //$topic = $model->getSingleTopic($id);
-    $model = new Messages();
-
-  } */
 }

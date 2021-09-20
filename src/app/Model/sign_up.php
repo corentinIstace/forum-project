@@ -29,10 +29,6 @@ class SignUp extends DatabaseManager{
             if (false === filter_var($password, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])[A-Za-z\d]{8,}$/")))){
                 $add_error["password"] = "Please secure your password with min 8 characters, Maj and numbers <br>";
             }
-            
-            // if (false === filter_var($signature, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.[A-Za-z])(?=.)[A-Za-z]{2,}$/")))){
-                //        $add_error["signature"] = "Invalid signature <br>";
-                // }  
                 
                 if (count($add_error)> 0){
                     echo "There are mistakes, please check your Data! <br>";
@@ -44,8 +40,6 @@ class SignUp extends DatabaseManager{
             
         }
     }       
-        // echo "<pre>";
-        // print_r($_POST);
             
     public function store(){
         if((isset($_POST['submit']))){
@@ -84,10 +78,8 @@ class SignUp extends DatabaseManager{
                     $req = $db->prepare($sql);
                     // lance la requete avec le tableau $data
                     $connexion = $req->execute($data);
-                    // require "../View/sign_in.php";
                     if ($connexion){
-                        header("Location:../app/index.php?page=sign_in");
-                        // echo "<script>alert('Your acount is register successfuly')</script>";    
+                        header("Location:../app/index.php?page=sign_in");  
                     }
                     
             } 

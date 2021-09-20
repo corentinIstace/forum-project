@@ -67,7 +67,5 @@ switch ($page) {
   case 'home':
   default:
     (new HomepageController())->index();
-    //(new HomepageController())->index();
-    //echo "Home";
     break;
 }

@@ -28,11 +28,7 @@
               $_SESSION['user_password'] = $row['password'];
               $_SESSION['user_signature'] = $row['signature'];
 
-              header("Location:../app/index.php?page=profile");
-              // echo "Bonjour à vous ";
-              // print_r($row['nickname']);
-              //  require_once "../View/profilPage.php";
-              
+              header("Location:../app/index.php?page=profile");              
             } else {
               echo "Invalid username or password or creating acount";
             }
