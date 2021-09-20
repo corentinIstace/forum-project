@@ -62,10 +62,17 @@ class BoardController
     if (!$this->isValide()) {
       return false;
     }
+    // Get the category and its topics
     $model = new Boards;
     $board = $model->getSingleBoard($id);
     $model = new Topics;
     $topics = $model->getTopics($id);
+    // Get author nicknames for each topics
+    $model = new Users();
+    $topicNumber = count($topics);
+    for( $i = 0 ; $i < $topicNumber ; $i++ ){
+      $topics[$i]['author'] = $model->getUser($topics[$i]['author_id'])['nickname'];
+    }
     require '../app/View/boards/board.php';
   }
 

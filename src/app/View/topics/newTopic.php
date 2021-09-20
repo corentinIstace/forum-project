@@ -19,30 +19,18 @@
 <body>
   <?php require '../app/View/includes/header.php'; ?>
   <section>
-    <?php $new = !isset($_GET['name']) ? TRUE : FALSE ?>
-    <?= $new ? "<h3>Create a new category of topics</h3>" : "<h3>Edit category of topics</h3>" ?>
-    <?php
-    $id = isset($_GET['id']) ? $_GET['id'] : "";
-    $name = isset($_GET['name']) ? $_GET['name'] : "";
-    $desc = isset($_GET['description']) ? $_GET['description'] : "";
-    ?>
-    <form action="" method="post">
-      <label for="name">Name</label><br>
-      <input type="text" name="name" placeholder="Name of category" value="<?= $name ?>"><br>
-      <label for="description">Description</label><br>
-      <input type="text" name="description" placeholder="Description" value="<?= $desc ?>"><br>
+    <a href="../public/index.php?page=category&id=<?= $board['id'] ?>"><h2><?= $board['name'] ?></h2></a>
+    <em><?= $board['description'] ?></em>
+    <h3>New topic</h3>
+    <form action="../public/index.php?page=addtopic" method="post">      
+      <input type="number" name="board_id" id="board_id" value="<?= $board_id ?>" hidden="true">
+      <label for="title">Title</label><br>
+      <input type="text" name="title" placeholder="Title of your topic" value=""><br>
+      <label for="message">Message</label><br>
+      <input type="text" name="message" placeholder="Message of your topic" value=""><br>
       <button type="submit">Send</button>
     </form>
-
-    <?php if (!$new) { ?>
-      <button type="text">
-        <a href="../app/index.php?page=deleteboard&id=<?= $id ?>" onclick="return confirm('Are your sure to delete <?= $name ?>')">
-          Delete this category
-        </a>
-      </button>
-    <?php } ?>
-
   </section>
-  <?php require '../app/View/includes/footer.php'; ?>  
+  <?php require '../app/View/includes/footer.php'; ?> 
 </body>
 </html>

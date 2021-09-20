@@ -40,25 +40,28 @@ class Topics extends DatabaseManager
   private function insertTopic($topic){
     $db = $this->connectDb();
     $req = $db->prepare("INSERT INTO topics (title, creation_date, author_id, board_id) 
-                          VALUES (:title, :creation_date, :author_id, :board_id)");
+                          VALUES (:title, NOW(), :author_id, :board_id)");
+    $db->beginTransaction();
     $req->execute($topic);
+    $last_id = $db->lastInsertId(); 
+    $db->commit();
+    return $last_id;
   }
 
   public function setTopic($topic){
     // Get only name and description, ignore empty id
     $topic = [
       'title' => $topic['title'],
-      'creation_date' => $topic['creation_date'],
       'author_id' => $topic['author_id'],
       'board_id' => $topic['board_id']
     ];
-    $this->inserttopic($topic);
+    return $this->insertTopic($topic);
   }
 
   private function updateTopic($topic){
     $db = $this->connectDb();
     $req = $db->prepare("UPDATE topics 
-                        SET title=:title, creation_date=:creation_date, author_id=:author_id, board_id=:board_id
+                        SET title=:title, creation_date=NOW(), author_id=:author_id, board_id=:board_id
                         WHERE id=:id");
     $req->execute($topic);
   }

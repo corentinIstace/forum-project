@@ -28,9 +28,9 @@ switch ($page) {
   case 'topic':
     (new TopicController())->displayTopic();
     break;
-  case 'replytopic':
+  /* case 'replytopic':
     (new TopicController())->replyTopic();
-    break;
+    break; */
   case 'categories': // http://127.0.0.1/public/index.php?page=categories
     (new BoardController())->listBoards();
     break;
@@ -43,6 +43,12 @@ switch ($page) {
   case 'editBoard':
   case 'updateBoard':
     (new BoardController())->editBoard();
+    break;
+  case 'newtopic':
+    (new TopicController())->createTopic();
+    break;
+  case 'addtopic':
+    (new TopicController())->addTopic();
     break;
   case 'deleteboard':
     (new BoardController())->deleteBoard();
