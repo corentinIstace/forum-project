@@ -123,7 +123,7 @@ class TopicController
     $model->setMessage([
       'author_id' => $author_id,
       'topic_id' => $topic_id,
-      'content' => $message
+      'message' => $message
     ]);
     header("Location:index.php?page=category&id=$board_id");
   }
