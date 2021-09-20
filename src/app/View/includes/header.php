@@ -18,6 +18,7 @@
           <button class="log-in-button"><a href="../public/index.php?page=sign_in">Log in</a></button>
         </div>
         <?php else: ?>
+          <a href="../public/index.php?page=profile">Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="../public/index.php?page=logout">Log out</a>
         <?php endif; ?>
       </section>
