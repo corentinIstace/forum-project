@@ -49,7 +49,7 @@ class Messages extends DatabaseManager
     $message = [
       'author_id' => $message['author_id'],
       'topic_id' => $message['topic_id'],
-      'content' => $message['content']
+      'content' => $message['message']
     ];
     $this->insertMessage($message);
   }  
