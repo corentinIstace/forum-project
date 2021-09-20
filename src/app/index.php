@@ -44,6 +44,12 @@ switch ($page) {
   case 'updateBoard':
     (new BoardController())->editBoard();
     break;
+  case 'newtopic':
+    (new TopicController())->createTopic();
+    break;
+  case 'addtopic':
+    (new TopicController())->addTopic();
+    break;
   case 'deleteboard':
     (new BoardController())->deleteBoard();
     break;

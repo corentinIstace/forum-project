@@ -17,21 +17,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <?php
-    /* Loop on topics of the board to display them */
-  ?>
   <?php require '../app/View/includes/header.php'; ?>
-    <section class="">
-      <h3><a href="../app/index.php?page=category&id=<?= $board['id'] ?>"><?= $board['name'] ?></a></h3>
-      <i><?= $board['description'] ?></i>
-      <br>
-      <a href="../public/index.php?page=newtopic&boardid=<?= $board['id'] ?>"><button>Create topic</button></a>
-      <?php foreach ($topics as $topic): ?>
-        <article>
-          <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author'] ?> [<?= $topic['creation_date'] ?>]</a>
-        </article>
-      <?php endforeach; ?>
-    </section>
-  <?php require '../app/View/includes/footer.php'; ?>  
+  <section>
+    <a href="../public/index.php?page=category&id=<?= $board['id'] ?>"><h2><?= $board['name'] ?></h2></a>
+    <em><?= $board['description'] ?></em>
+    <h3>New topic</h3>
+    <form action="../public/index.php?page=addtopic" method="post">      
+      <input type="number" name="board_id" id="board_id" value="<?= $board_id ?>" hidden="true">
+      <label for="title">Title</label><br>
+      <input type="text" name="title" placeholder="Title of your topic" value=""><br>
+      <label for="message">Message</label><br>
+      <input type="text" name="message" placeholder="Message of your topic" value=""><br>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+  <?php require '../app/View/includes/footer.php'; ?> 
 </body>
 </html>

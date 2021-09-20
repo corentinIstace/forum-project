@@ -88,7 +88,7 @@ class MessageController
             $_GET['description'] = $message["description"];
             require '../app/View/boards/newBoard.php';
         } else {
-            $board = $this->getValidateBoard(FALSE);
+            $board = $this->getValidateMessage(FALSE, $id);
             if ($this->isValide()) {
                 // Nothing wrong, will proceed the update then display the list of boards
                 $model = new Messages;
