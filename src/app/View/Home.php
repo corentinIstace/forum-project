@@ -32,7 +32,7 @@
         /* Loop on boards and topics to display them */
         foreach ($boards as $board) : ?>
           <div class="board-container">
-            <h3><a href="../app/index.php?page=category&id=<?= $board['id'] ?>"><?= $board['name'] ?></a></h3>
+            <h3><a href="../public/index.php?page=category&id=<?= $board['id'] ?>"><?= $board['name'] ?></a></h3>
             <i class="testDescription"><?= $board['description'] ?></i>
             <hr class="board-hr">
             <div class="bottom-boards align-self-sm-end">
@@ -59,7 +59,7 @@
               if ($topic['board_id'] == $board['id']) :
             ?>
               <div class="article-dn">
-                <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></a>
+                <a href="../public/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author_id'] ?> at <?= $topic['creation_date'] ?></a>
               </div>
             <?php
               endif;

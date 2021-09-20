@@ -28,7 +28,7 @@
               $_SESSION['user_password'] = $row['password'];
               $_SESSION['user_signature'] = $row['signature'];
 
-              header("Location:../app/index.php?page=profile");              
+              header("Location:../public/index.php?page=profile");              
             } else {
               echo "Invalid username or password or creating acount";
             }

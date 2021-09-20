@@ -31,7 +31,7 @@
         </header>
         <nav>
             <ul>
-                <li><a href="../app/index.php?page=home">Home</a></li>
+                <li><a href="../public/index.php?page=home">Home</a></li>
                 <li><a href="#name_change">Nickname's change</a> </li>
                 <li><a href="#password_change">Password's change</a> </li>
                 <li><a href="#avatar_change">Avatar's change</a> </li>
@@ -48,7 +48,7 @@
         <section id="name_change">
             <h2>Change your Nickname:</h2>
             <section id="containeur_form">
-            <form method="post" action="../app/index.php?page=profile" class="form">
+            <form method="post" action="../public/index.php?page=profile" class="form">
                 <label for="id">ID</label>
                 <input type='number' name='id'><br><br>
                 <label for="nickname">Current nickname</label>
@@ -63,7 +63,7 @@
         <section id="password_change">
         <h2>Change your password:</h2>
         <section id="containeur_form">
-            <form method="post" action="../app/index.php?page=profile" class="form">
+            <form method="post" action="../public/index.php?page=profile" class="form">
                 <label for="password">Current password</label>
                     <input type='text' name='password'><br><br>
                 <label for="new_password">New password</label>

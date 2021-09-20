@@ -74,7 +74,7 @@ class Users extends DatabaseManager
           $statement = $db->prepare($sql);
           $statement->execute($data);
           $_SESSION['user_nickname'] = $_POST['new_nickname'];
-          header("Location:../app/index.php?page=profile");
+          header("Location:../public/index.php?page=profile");
       }   
     }
   }
@@ -96,7 +96,7 @@ class Users extends DatabaseManager
           $statement = $db->prepare($sql);
           $statement->execute($data);
           $_SESSION['user_password'] = $_POST['new_password'];
-          header("Location:../app/index.php?page=profile");
+          header("Location:../public/index.php?page=profile");
       }   
     }
   }

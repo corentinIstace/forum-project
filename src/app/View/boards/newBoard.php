@@ -36,7 +36,7 @@
 
     <?php if (!$new) { ?>
       <button type="text">
-        <a href="../app/index.php?page=deleteboard&id=<?= $id ?>" onclick="return confirm('Are your sure to delete <?= $name ?>')">
+        <a href="../public/index.php?page=deleteboard&id=<?= $id ?>" onclick="return confirm('Are your sure to delete <?= $name ?>')">
           Delete this category
         </a>
       </button>

@@ -79,7 +79,7 @@ class SignUp extends DatabaseManager{
                     // lance la requete avec le tableau $data
                     $connexion = $req->execute($data);
                     if ($connexion){
-                        header("Location:../app/index.php?page=sign_in");  
+                        header("Location:../public/index.php?page=sign_in");  
                     }
                     
             } 

@@ -22,13 +22,13 @@
   ?>
   <?php require '../app/View/includes/header.php'; ?>
     <section class="">
-      <h3><a href="../app/index.php?page=category&id=<?= $board['id'] ?>"><?= $board['name'] ?></a></h3>
+      <h3><a href="../public/index.php?page=category&id=<?= $board['id'] ?>"><?= $board['name'] ?></a></h3>
       <i><?= $board['description'] ?></i>
       <br>
       <a href="../public/index.php?page=newtopic&boardid=<?= $board['id'] ?>"><button>Create topic</button></a>
       <?php foreach ($topics as $topic): ?>
         <article>
-          <a href="../app/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author'] ?> [<?= $topic['creation_date'] ?>]</a>
+          <a href="../public/index.php?page=topic&id=<?= $topic['id'] ?>"><?= $topic['title'] ?> by <?= $topic['author'] ?> [<?= $topic['creation_date'] ?>]</a>
         </article>
       <?php endforeach; ?>
     </section>
