@@ -5,9 +5,8 @@
   class UserSession extends DatabaseManager{
     
     public function logout(){
-      if(isset($_POST['logout'])){
-        session_destroy();
-        header("Location:../app/index.php?page=home");
-      }
+      session_destroy();
+      $_SESSION = null;
+      header("Location:../public/index.php");      
     }
 }

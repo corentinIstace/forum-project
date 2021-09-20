@@ -62,6 +62,8 @@ switch ($page) {
   case 'profile':
     (new UserController())->displayProfile(); 
     break;
+  case 'logout':
+    (new UserSession())->logout();
   case 'home':
   default:
     (new HomepageController())->index();

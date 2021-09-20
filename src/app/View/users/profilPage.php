@@ -36,9 +36,6 @@
                 <li><a href="#password_change">Password's change</a> </li>
                 <li><a href="#avatar_change">Avatar's change</a> </li>
                 <li><a href="#activities">Activities</a></li>
-                <form method="POST" action="../app/index.php?page=profile">
-                    <input type="submit" name="logout" value="Logout">
-                </form>
             </ul>
         </nav>
         <section id="data">
