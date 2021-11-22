@@ -4,7 +4,7 @@ services:
   php: 
     image: "becodeorg/php"
     volumes: 
-      - "./src:/var/www/html"
+      - "./src/public:/var/www/html"
     ports: 
       - "80:80"
   mysql: 
